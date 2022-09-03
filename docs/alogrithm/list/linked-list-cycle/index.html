@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="快慢指针 # 链表成环 # 判断链表成环 # 技巧一: 使用 dummy 头节点避免空指针
+技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环
+public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 返回环的起点 # 思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="快慢指针" />
+<meta property="og:description" content="快慢指针 # 链表成环 # 判断链表成环 # 技巧一: 使用 dummy 头节点避免空指针
+技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环
+public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 返回环的起点 # 思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sammyyx.github.io/docs/alogrithm/list/linked-list-cycle/" /><meta property="article:section" content="docs" />
+
+
+
+<title>快慢指针 | LEARN</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.830ce6b593304c6853cd5deb4210fe026bb1ac64d372c700eb956acdc81a9ee3.js" integrity="sha256-gwzmtZMwTGhTzV3rQhD&#43;AmuxrGTTcscA65VqzcganuM=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>LEARN</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>技术笔记</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Java</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Spring</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>网络</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tech/network/tcp/" class="">TCP 协议常见问题</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>算法</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>链表</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/alogrithm/list/linked-list-cycle/" class="active">快慢指针</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        最近发布
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>快慢指针</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#链表成环">链表成环</a>
+      <ul>
+        <li><a href="#判断链表成环">判断链表成环</a></li>
+        <li><a href="#返回环的起点">返回环的起点</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="快慢指针">
+  快慢指针
+  <a class="anchor" href="#%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88">#</a>
+</h1>
+<h2 id="链表成环">
+  链表成环
+  <a class="anchor" href="#%e9%93%be%e8%a1%a8%e6%88%90%e7%8e%af">#</a>
+</h2>
+<h3 id="判断链表成环">
+  判断链表成环
+  <a class="anchor" href="#%e5%88%a4%e6%96%ad%e9%93%be%e8%a1%a8%e6%88%90%e7%8e%af">#</a>
+</h3>
+<p>技巧一: 使用 <strong>dummy</strong> 头节点避免空指针</p>
+<p>技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasCycle</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode fast <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode slow <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next了</span><span style="color:#f92672">;.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">==</span> slow<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="返回环的起点">
+  返回环的起点
+  <a class="anchor" href="#%e8%bf%94%e5%9b%9e%e7%8e%af%e7%9a%84%e8%b5%b7%e7%82%b9">#</a>
+</h3>
+<p><img src="image/image-20220903201209897.png" alt="image-20220903201209897" /></p>
+<p>思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">detectCycle</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode fast <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode slow <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">==</span> slow<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        slow <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast <span style="color:#f92672">!=</span> slow<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>          slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> slow<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#链表成环">链表成环</a>
+      <ul>
+        <li><a href="#判断链表成环">判断链表成环</a></li>
+        <li><a href="#返回环的起点">返回环的起点</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
