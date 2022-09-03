@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>LEARN</title>
-    <link>sammyyx.github.io/</link>
+    <link>https://sammyyx.github.io/</link>
     <description>Recent content on LEARN</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="sammyyx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://sammyyx.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <link>https://sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      <guid>https://sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
       <description>TCPIP # 三次握手 # 基本原理
 注意上图 ACK 和 ack 的区别, ACK/SYN/FIN 都是标志位, 其值只有 1 或 0, ack 代表确认号, 代表希望下一次收到的 seq 为 ack.
 三次握手的目的: 建立可靠的全双工通信机制
