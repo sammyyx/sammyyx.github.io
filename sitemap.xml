@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://sammyyx.github.io/docs/tech/network/tcp/</loc>
+  </url><url>
     <loc>https://sammyyx.github.io/docs/tech/</loc>
   </url><url>
     <loc>https://sammyyx.github.io/docs/alogrithm/</loc>
@@ -11,8 +13,6 @@
     <loc>https://sammyyx.github.io/docs/tech/spring/</loc>
   </url><url>
     <loc>https://sammyyx.github.io/docs/tech/network/</loc>
-  </url><url>
-    <loc>https://sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</loc>
   </url><url>
     <loc>https://sammyyx.github.io/categories/</loc>
   </url><url>
