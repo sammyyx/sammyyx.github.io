@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络 on LEARN</title>
+    <link>https://sammyyx.github.io/docs/tech/network/</link>
+    <description>Recent content in 网络 on LEARN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://sammyyx.github.io/docs/tech/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TCP 协议常见问题</title>
+      <link>https://sammyyx.github.io/docs/tech/network/tcp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sammyyx.github.io/docs/tech/network/tcp/</guid>
+      <description>TCP 协议常见问题 # 三次握手 # 基本原理
+注意上图 ACK 和 ack 的区别, ACK/SYN/FIN 都是标志位, 其值只有 1 或 0, ack 代表确认号, 代表希望下一次收到的 seq 为 ack.
+三次握手的目的: 建立可靠的全双工通信机制
+为什么需要三次握手:
+(1) 防止重复连接, 在网络状况比较差的情况下, 发送方可能发了多次建立连接的请求, 如果只有两次请求, server 只能选择接收或者是拒绝, 但 server 区分不了这是正常的请求还是重发的请求, 所以重发的请求会导致大量无效连接的建立.
+如果是三次握手, 客户端可以根据接收到的消息, 判断当前连接是否为历史连接, 如果判断为历史连接, 就会发送 RST 报文给服务端终止连接. 如果判断不是历史连接, 就是执行第三次握手.
+(2) 同步初始化序列号, 如果是两次握手就无法对序列号进行确认了.
+序列号的作用就是防止数据包重复发送, 以及有效的解决数据接收时顺序颠倒的问题.
+四次挥手 # 连接建立双方都可以主动断开连接. 由于每个方向都有一对 FIN 和 ACK, 故称为 4 次握手.
+FIN 仅仅代表发起方不再发送消息了, 但是还能接收消息. 以上图为例, server 收到 client 的 FIN 后, 由于服务端可能还有数据需要处理和发送, 因此先回了一个 ACK,</description>
+    </item>
+    
+  </channel>
+</rss>
