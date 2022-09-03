@@ -31,11 +31,11 @@ FIN 仅仅代表发起方不再发送消息了, 但是还能接收消息. 以上
 
 
 <title>Tcpip常见问题汇总 | LEARN</title>
-<link rel="manifest" href="https://sammyyx.github.io/manifest.json">
-<link rel="icon" href="https://sammyyx.github.io/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="https://sammyyx.github.io/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
-  <script defer src="https://sammyyx.github.io/flexsearch.min.js"></script>
-  <script defer src="https://sammyyx.github.io/en.search.min.8fa5e15e9d99c9b40be0c7b171f60a1edc4a47d1089c43adbc94475667807a39.js" integrity="sha256-j6XhXp2ZybQL4MexcfYKHtxKR9EInEOtvJRHVmeAejk=" crossorigin="anonymous"></script>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.8fa5e15e9d99c9b40be0c7b171f60a1edc4a47d1089c43adbc94475667807a39.js" integrity="sha256-j6XhXp2ZybQL4MexcfYKHtxKR9EInEOtvJRHVmeAejk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -51,7 +51,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="https://sammyyx.github.io/"><span>LEARN</span>
+  <a class="flex align-center" href="/"><span>LEARN</span>
   </a>
 </h2>
 
@@ -149,7 +149,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://sammyyx.github.io/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="active">Tcpip常见问题汇总</a>
+    <a href="/docs/tech/network/tcpip%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="active">Tcpip常见问题汇总</a>
   
 
         </li>
@@ -217,7 +217,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
   
   <li>
-    <a href="https://sammyyx.github.io/posts/" >
+    <a href="/posts/" >
         最近发布
       </a>
   </li>
@@ -246,14 +246,14 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="https://sammyyx.github.io/svg/menu.svg" class="book-icon" alt="Menu" />
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
   <strong>Tcpip常见问题汇总</strong>
 
   <label for="toc-control">
     
-    <img src="https://sammyyx.github.io/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
     
   </label>
 </div>
@@ -296,7 +296,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b">#</a>
 </h3>
 <p><strong>基本原理</strong></p>
-<!-- raw HTML omitted -->
+<p><img src="image/image-20220827100517131.png" alt="" /></p>
 <p>注意上图 ACK 和 ack 的区别, ACK/SYN/FIN 都是标志位, 其值只有 1 或 0, ack 代表确认号, 代表希望下一次收到的 seq 为 ack.</p>
 <p>三次握手的目的: <strong>建立可靠的全双工通信机制</strong></p>
 <p>为什么需要三次握手:</p>
@@ -312,7 +312,7 @@ https://github.com/alex-shpak/hugo-book
   四次挥手
   <a class="anchor" href="#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b">#</a>
 </h3>
-<!-- raw HTML omitted -->
+<p><img src="image/image-20220827103412195.png" alt="" /></p>
 <p>连接建立双方都可以主动断开连接. 由于每个方向都有一对 FIN 和 ACK, 故称为 4 次握手.</p>
 <p>FIN 仅仅代表发起方不再发送消息了, 但是还能接收消息. 以上图为例, server 收到 client 的 FIN 后, 由于服务端可能还有数据需要处理和发送, 因此先回了一个 ACK,</p>
 <p>客户端为什么需要等 2MSL: 确保服务端接收到了 ACK, 如果服务端在一个 MSL 未接收到, 客户端会重发 FIN, 客户端会再次发 ACK 进行确认. 如果没有这个 2MSL, 服务端重发的 FIN 客户端无法接收到, 导致服务端侧的连接无法关闭.</p>
@@ -330,13 +330,13 @@ https://github.com/alex-shpak/hugo-book
   发送窗口
   <a class="anchor" href="#%e5%8f%91%e9%80%81%e7%aa%97%e5%8f%a3">#</a>
 </h4>
-<!-- raw HTML omitted -->
+<p><img src="image/image-20220827105959833.png" alt="" /></p>
 <p><strong>可用窗口大小</strong> = SND.UNA + SND.WND - SND.NXT</p>
 <h4 id="接收窗口">
   接收窗口
   <a class="anchor" href="#%e6%8e%a5%e6%94%b6%e7%aa%97%e5%8f%a3">#</a>
 </h4>
-<!-- raw HTML omitted -->
+<p><img src="image/image-20220827110224421.png" alt="" /></p>
 <h3 id="拥塞控制">
   拥塞控制
   <a class="anchor" href="#%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6">#</a>
