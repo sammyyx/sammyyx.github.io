@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="cn" dir="ltr">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="快慢指针 # 链表成环 # 判断链表成环 # 技巧一: 使用 dummy 头节点避免空指针
-技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环
-public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 返回环的起点 # 思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点.">
+<meta name="description" content="双指针 # 链表成环 # 判断链表成环 # dummy 头节点
+使用 dummy 头节点避免空指针 快慢指针
+快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环 public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 找到链表中点 # 典型快慢指针, 判断链表成环类似">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="快慢指针" />
-<meta property="og:description" content="快慢指针 # 链表成环 # 判断链表成环 # 技巧一: 使用 dummy 头节点避免空指针
-技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环
-public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 返回环的起点 # 思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点." />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="双指针" />
+<meta property="og:description" content="双指针 # 链表成环 # 判断链表成环 # dummy 头节点
+使用 dummy 头节点避免空指针 快慢指针
+快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环 public boolean hasCycle(ListNode head) { ListNode dummy = new ListNode(); dummy.next = head; ListNode fast = dummy; ListNode slow = dummy; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next了;.next; slow = slow.next; if (fast == slow) { return true; } } return false; } 找到链表中点 # 典型快慢指针, 判断链表成环类似" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sammyyx.github.io/docs/alogrithm/list/linked-list-cycle/" /><meta property="article:section" content="docs" />
 
 
 
-<title>快慢指针 | LEARN</title>
+<title>双指针 | LEARN</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.830ce6b593304c6853cd5deb4210fe026bb1ac64d372c700eb956acdc81a9ee3.js" integrity="sha256-gwzmtZMwTGhTzV3rQhD&#43;AmuxrGTTcscA65VqzcganuM=" crossorigin="anonymous"></script>
+  <script defer src="/cn.search.min.7dd2e45952fb2018f42041cd42acdff0ea899171ba3c387bf4a71d3c4c892592.js" integrity="sha256-fdLkWVL7IBj0IEHNQqzf8OqJkXG6PDh79KcdPEyJJZI=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -43,7 +43,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -184,7 +184,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/alogrithm/list/linked-list-cycle/" class="active">快慢指针</a>
+    <a href="/docs/alogrithm/list/linked-list-cycle/" class="active">双指针</a>
   
 
         </li>
@@ -248,7 +248,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>快慢指针</strong>
+  <strong>双指针</strong>
 
   <label for="toc-control">
     
@@ -267,9 +267,22 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#链表成环">链表成环</a>
       <ul>
         <li><a href="#判断链表成环">判断链表成环</a></li>
+      </ul>
+    </li>
+    <li><a href="#找到链表中点">找到链表中点</a>
+      <ul>
         <li><a href="#返回环的起点">返回环的起点</a></li>
       </ul>
     </li>
+    <li><a href="#删除倒数第-k-个节点">删除倒数第 k 个节点</a></li>
+    <li><a href="#两链表相交节点">两链表相交节点</a></li>
+    <li><a href="#合并链表">合并链表</a>
+      <ul>
+        <li><a href="#合并两个链表">合并两个链表</a></li>
+        <li><a href="#合并-k-个链表">合并 k 个链表</a></li>
+      </ul>
+    </li>
+    <li><a href="#分隔链表">分隔链表</a></li>
   </ul>
 </nav>
 
@@ -282,9 +295,9 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="快慢指针">
-  快慢指针
-  <a class="anchor" href="#%e5%bf%ab%e6%85%a2%e6%8c%87%e9%92%88">#</a>
+  <article class="markdown"><h1 id="双指针">
+  双指针
+  <a class="anchor" href="#%e5%8f%8c%e6%8c%87%e9%92%88">#</a>
 </h1>
 <h2 id="链表成环">
   链表成环
@@ -294,8 +307,14 @@ https://github.com/alex-shpak/hugo-book
   判断链表成环
   <a class="anchor" href="#%e5%88%a4%e6%96%ad%e9%93%be%e8%a1%a8%e6%88%90%e7%8e%af">#</a>
 </h3>
-<p>技巧一: 使用 <strong>dummy</strong> 头节点避免空指针</p>
-<p>技巧二: 快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环</p>
+<p><strong>dummy 头节点</strong></p>
+<ul>
+<li>使用 <strong>dummy</strong> 头节点避免空指针</li>
+</ul>
+<p><strong>快慢指针</strong></p>
+<ul>
+<li>快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasCycle</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
@@ -309,6 +328,44 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="找到链表中点">
+  找到链表中点
+  <a class="anchor" href="#%e6%89%be%e5%88%b0%e9%93%be%e8%a1%a8%e4%b8%ad%e7%82%b9">#</a>
+</h2>
+<p>典型快慢指针, 判断链表成环类似</p>
+<p><strong>dummy 头节点</strong></p>
+<ul>
+<li>使用 <strong>dummy</strong> 头节点避免空指针</li>
+</ul>
+<p><strong>快慢指针(终止条件)</strong></p>
+<ul>
+<li>if fast != null &amp;&amp; fast.next != null, 快指针走两步, 慢指针走一步, if fast.next == null: return slow;</li>
+</ul>
+<blockquote>
+<p>长度为奇数</p>
+<p>1-&gt;2(slow)-&gt;3-&gt;null(fast)</p>
+<p>长度为偶数</p>
+<p>1-&gt;2(slow)-&gt;3-&gt;4(fast)-&gt;null</p>
+</blockquote>
+<p><strong>举一反三</strong></p>
+<ul>
+<li>上述终止条件对应偶数长度时, 返回的是靠前的中间节点, 如何返回靠后的?
+<ul>
+<li><code>return fast != null ? slow.next ? slow;</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">middleNode</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode fast <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode slow <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">:</span> slow<span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><h3 id="返回环的起点">
   返回环的起点
@@ -335,6 +392,166 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="删除倒数第-k-个节点">
+  删除倒数第 k 个节点
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4%e5%80%92%e6%95%b0%e7%ac%ac-k-%e4%b8%aa%e8%8a%82%e7%82%b9">#</a>
+</h2>
+<p><strong>删除节点</strong></p>
+<ul>
+<li>例如如下链表 1-&gt;2-&gt;3, 我们如果要删除节点 2, 那么就需要用指针指向节点 2 的上一个节点, 执行 p.next = p.next.next 即可.</li>
+</ul>
+<p><strong>dummy节点</strong></p>
+<blockquote>
+<p>dummy-&gt;head-&gt;&hellip;</p>
+</blockquote>
+<ul>
+<li>如果我们要删除头节点, 那么我们指针如何指向头节点的上一个节点, 所以需要一个 dummy 节点</li>
+</ul>
+<p><strong>快慢指针</strong></p>
+<blockquote>
+<p>为了定位倒数 k+1 个节点</p>
+<p>dummy-&gt;1-&gt;2-&gt;3(slow)-&gt;4-&gt;5-&gt;6-&gt;null(fast)</p>
+</blockquote>
+<p>当 slow 和 fast 之间始终间隔 k 个节点时, 如果 fast 节点遍历到 null, 那么 slow 节点正好指向倒数第 k+1 个节点</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">removeNthFromEnd</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> n<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>     ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>     dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     ListNode fast <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     ListNode slow <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// 与 slow 间隔 k 个节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>       fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>       slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>       fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>     slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="两链表相交节点">
+  两链表相交节点
+  <a class="anchor" href="#%e4%b8%a4%e9%93%be%e8%a1%a8%e7%9b%b8%e4%ba%a4%e8%8a%82%e7%82%b9">#</a>
+</h2>
+<p>原始两条链表如下</p>
+<p>a1-&gt;a2-&gt;b1-&gt;b2</p>
+<p>c1-&gt;c2&ndash;&gt;d1-&gt;d2-&gt;b1-&gt;d3</p>
+<p>将链表1和链表2拼接起来, 形成两条长度一样的链表, 可以发现在遍历完之前 b1 节点重合了</p>
+<p>a1-&gt;a2-&gt;b1-&gt;b2-&gt;null-&gt;c1-&gt;c2&ndash;&gt;d1-&gt;d2-&gt;b1-&gt;d3-&gt;null</p>
+<p>c1-&gt;c2&ndash;&gt;d1-&gt;d2-&gt;b1-&gt;d3-&gt;null-&gt;a1-&gt;a2-&gt;b1-&gt;b2-&gt;null</p>
+<p>解题的关键是将链表1和链表2拼接起来, 判断的条件是如果在到达最后的 null 节点之前重合了, 那么节点相交</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">getIntersectionNode</span><span style="color:#f92672">(</span>ListNode headA<span style="color:#f92672">,</span> ListNode headB<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode p1 <span style="color:#f92672">=</span> headA<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode p2 <span style="color:#f92672">=</span> headB<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">!=</span> p2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p1 <span style="color:#f92672">=</span> headB<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p2 <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p2 <span style="color:#f92672">=</span> headA<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> p1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="合并链表">
+  合并链表
+  <a class="anchor" href="#%e5%90%88%e5%b9%b6%e9%93%be%e8%a1%a8">#</a>
+</h2>
+<h3 id="合并两个链表">
+  合并两个链表
+  <a class="anchor" href="#%e5%90%88%e5%b9%b6%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8">#</a>
+</h3>
+<p><strong>dummy 节点</strong></p>
+<ul>
+<li>使用 dummy 节点保存新链表头指针的引用</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">mergeTwoLists</span><span style="color:#f92672">(</span>ListNode list1<span style="color:#f92672">,</span> ListNode list2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode p1 <span style="color:#f92672">=</span> list1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode p2 <span style="color:#f92672">=</span> list2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    ListNode p <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> p2 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p1<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">&gt;</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p2 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="合并-k-个链表">
+  合并 k 个链表
+  <a class="anchor" href="#%e5%90%88%e5%b9%b6-k-%e4%b8%aa%e9%93%be%e8%a1%a8">#</a>
+</h3>
+<p><strong>优先级队列</strong></p>
+<ul>
+<li>使用 PriorityQueue 保存不同链表的头节点, 每次从里面取出一个 val 最小的添加到新链表中</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PriorityQueue<span style="color:#f92672">&lt;</span>ListNode<span style="color:#f92672">&gt;</span> pq <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;&gt;((</span>ListNode ln1<span style="color:#f92672">,</span> ListNode ln2<span style="color:#f92672">)-&gt;{</span><span style="color:#66d9ef">return</span> ln1<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">-</span> ln2<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span><span style="color:#f92672">;});</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">mergeKLists</span><span style="color:#f92672">(</span>ListNode<span style="color:#f92672">[]</span> lists<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    PriorityQueue<span style="color:#f92672">&lt;</span>ListNode<span style="color:#f92672">&gt;</span> pq <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;&gt;((</span>ListNode ln1<span style="color:#f92672">,</span> ListNode ln2<span style="color:#f92672">)-&gt;{</span><span style="color:#66d9ef">return</span> ln1<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">-</span> ln2<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span><span style="color:#f92672">;});</span>
+</span></span><span style="display:flex;"><span>    ListNode dummy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    ListNode p <span style="color:#f92672">=</span> dummy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>ListNode ln<span style="color:#f92672">:</span> lists<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>ln <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        pq<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>ln<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(!</span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      ListNode n1 <span style="color:#f92672">=</span> pq<span style="color:#f92672">.</span><span style="color:#a6e22e">poll</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>      p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> n1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        pq<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>n1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dummy<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="分隔链表">
+  分隔链表
+  <a class="anchor" href="#%e5%88%86%e9%9a%94%e9%93%be%e8%a1%a8">#</a>
+</h2>
+<p><strong>链表拆分, 注意切断原有联系</strong></p>
+<blockquote>
+<p>原链表: 1-&gt;5-&gt;3-&gt;4-&gt;6</p>
+<p>新链表(smaller): 1-&gt;3-&gt;4(-&gt;6)</p>
+<p>注意节点 4 后面还连着节点 6, 必须把其置为 null.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ListNode <span style="color:#a6e22e">partition</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ListNode smaller <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    ListNode bigger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    ListNode p1 <span style="color:#f92672">=</span> smaller<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode p2 <span style="color:#f92672">=</span> bigger<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode p <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>p <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">&lt;</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> p<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 切断原有联系
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> bigger<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> smaller<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></article>
  
@@ -380,9 +597,22 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#链表成环">链表成环</a>
       <ul>
         <li><a href="#判断链表成环">判断链表成环</a></li>
+      </ul>
+    </li>
+    <li><a href="#找到链表中点">找到链表中点</a>
+      <ul>
         <li><a href="#返回环的起点">返回环的起点</a></li>
       </ul>
     </li>
+    <li><a href="#删除倒数第-k-个节点">删除倒数第 k 个节点</a></li>
+    <li><a href="#两链表相交节点">两链表相交节点</a></li>
+    <li><a href="#合并链表">合并链表</a>
+      <ul>
+        <li><a href="#合并两个链表">合并两个链表</a></li>
+        <li><a href="#合并-k-个链表">合并 k 个链表</a></li>
+      </ul>
+    </li>
+    <li><a href="#分隔链表">分隔链表</a></li>
   </ul>
 </nav>
 
