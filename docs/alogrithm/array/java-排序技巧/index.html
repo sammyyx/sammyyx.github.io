@@ -3,20 +3,31 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content=" Java 技巧 # 数组排序 # Arrays
+Arrays 工具类中封装了大量的排序算法, 对于升序排序, 直接使用 Arrays.sort 即可. 如果想对数组类进行逆序排序/自定义comparator排序 包装类 Arrays.sort(array, Arrays.sort(nums, (a,b)-&gt;{return b-a;});) 基本类型 int[] sorted = Arrays.stream(nums).boxed().sorted((a,b)-&gt;{return b-a;}).mapToInt(a-&gt;a).toArray(); 数组转换 # 基本类型数组-&gt;包装类数组
+Integer[] sorted = Arrays.stream(nums).boxed().toArray(Integer[]::new); 基本类型数组-&gt;包装类集合
+List&lt;Integer&gt; array = Arrays.stream(nums).boxed().collect(Collectors.toList()); 集合排序 # Collections
+Collections.sort(array, (a,b)-&gt;{return b-a;}); 集合转换 # 包装类集合-&gt;包装类数组
+Integer[] nums = array.stream().toArray(Integer[]::new); ">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Docs" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://sammyyx.github.io/docs/" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Java 排序技巧" />
+<meta property="og:description" content=" Java 技巧 # 数组排序 # Arrays
+Arrays 工具类中封装了大量的排序算法, 对于升序排序, 直接使用 Arrays.sort 即可. 如果想对数组类进行逆序排序/自定义comparator排序 包装类 Arrays.sort(array, Arrays.sort(nums, (a,b)-&gt;{return b-a;});) 基本类型 int[] sorted = Arrays.stream(nums).boxed().sorted((a,b)-&gt;{return b-a;}).mapToInt(a-&gt;a).toArray(); 数组转换 # 基本类型数组-&gt;包装类数组
+Integer[] sorted = Arrays.stream(nums).boxed().toArray(Integer[]::new); 基本类型数组-&gt;包装类集合
+List&lt;Integer&gt; array = Arrays.stream(nums).boxed().collect(Collectors.toList()); 集合排序 # Collections
+Collections.sort(array, (a,b)-&gt;{return b-a;}); 集合转换 # 包装类集合-&gt;包装类数组
+Integer[] nums = array.stream().toArray(Integer[]::new); " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sammyyx.github.io/docs/alogrithm/array/java-%E6%8E%92%E5%BA%8F%E6%8A%80%E5%B7%A7/" /><meta property="article:section" content="docs" />
 
-<title>Docs | LEARN</title>
+
+
+<title>Java 排序技巧 | LEARN</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/cn.search.min.d0fc30536b6a2443531ffdee6482aa05296090c6266930990387894d62ea3eb8.js" integrity="sha256-0PwwU2tqJENTH/3uZIKqBSlgkMYmaTCZA4eJTWLqPrg=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://sammyyx.github.io/docs/index.xml" title="LEARN" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -223,7 +234,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/alogrithm/array/java-%E6%8E%92%E5%BA%8F%E6%8A%80%E5%B7%A7/" class="">Java 排序技巧</a>
+    <a href="/docs/alogrithm/array/java-%E6%8E%92%E5%BA%8F%E6%8A%80%E5%B7%A7/" class="active">Java 排序技巧</a>
   
 
         </li>
@@ -287,7 +298,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Docs</strong>
+  <strong>Java 排序技巧</strong>
 
   <label for="toc-control">
     
@@ -301,7 +312,14 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#数组排序">数组排序</a></li>
+    <li><a href="#数组转换">数组转换</a></li>
+    <li><a href="#集合排序">集合排序</a></li>
+    <li><a href="#集合转换">集合转换</a></li>
+  </ul>
+</nav>
 
 
 
@@ -312,7 +330,61 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="java-技巧">
+  Java 技巧
+  <a class="anchor" href="#java-%e6%8a%80%e5%b7%a7">#</a>
+</h1>
+<h2 id="数组排序">
+  数组排序
+  <a class="anchor" href="#%e6%95%b0%e7%bb%84%e6%8e%92%e5%ba%8f">#</a>
+</h2>
+<p><strong>Arrays</strong></p>
+<ul>
+<li>Arrays 工具类中封装了大量的排序算法, 对于升序排序, 直接使用 Arrays.sort 即可.</li>
+<li>如果想对数组类进行逆序排序/自定义comparator排序
+<ul>
+<li>包装类
+<ul>
+<li><code>Arrays.sort(array, Arrays.sort(nums, (a,b)-&gt;{return b-a;});)</code></li>
+</ul>
+</li>
+<li>基本类型
+<ul>
+<li><code>int[] sorted = Arrays.stream(nums).boxed().sorted((a,b)-&gt;{return b-a;}).mapToInt(a-&gt;a).toArray();</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数组转换">
+  数组转换
+  <a class="anchor" href="#%e6%95%b0%e7%bb%84%e8%bd%ac%e6%8d%a2">#</a>
+</h2>
+<p><strong>基本类型数组-&gt;包装类数组</strong></p>
+<ul>
+<li><code>Integer[] sorted = Arrays.stream(nums).boxed().toArray(Integer[]::new);</code></li>
+</ul>
+<p><strong>基本类型数组-&gt;包装类集合</strong></p>
+<ul>
+<li><code>List&lt;Integer&gt; array = Arrays.stream(nums).boxed().collect(Collectors.toList());</code></li>
+</ul>
+<h2 id="集合排序">
+  集合排序
+  <a class="anchor" href="#%e9%9b%86%e5%90%88%e6%8e%92%e5%ba%8f">#</a>
+</h2>
+<p><strong>Collections</strong></p>
+<ul>
+<li><code>Collections.sort(array, (a,b)-&gt;{return b-a;});</code></li>
+</ul>
+<h2 id="集合转换">
+  集合转换
+  <a class="anchor" href="#%e9%9b%86%e5%90%88%e8%bd%ac%e6%8d%a2">#</a>
+</h2>
+<p><strong>包装类集合-&gt;包装类数组</strong></p>
+<ul>
+<li><code>Integer[] nums = array.stream().toArray(Integer[]::new);</code></li>
+</ul>
+</article>
  
       
 
@@ -337,6 +409,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -347,7 +423,14 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#数组排序">数组排序</a></li>
+    <li><a href="#数组转换">数组转换</a></li>
+    <li><a href="#集合排序">集合排序</a></li>
+    <li><a href="#集合转换">集合转换</a></li>
+  </ul>
+</nav>
 
 
  
