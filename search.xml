@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Java数组集合技巧合集</title>
+      <link href="/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/"/>
+      <url>/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><p><strong>Arrays</strong></p><ul><li>Arrays 工具类中封装了大量的排序算法, 对于升序排序, 直接使用 Arrays.sort 即可.</li><li>如果想对数组类进行逆序排序&#x2F;自定义comparator排序<ul><li>包装类<ul><li><code>Arrays.sort(array, Arrays.sort(nums, (a,b)-&gt;&#123;return b-a;&#125;);)</code></li></ul></li><li>基本类型<ul><li><code>int[] sorted = Arrays.stream(nums).boxed().sorted((a,b)-&gt;&#123;return b-a;&#125;).mapToInt(a-&gt;a).toArray();</code></li></ul></li></ul></li></ul><h2 id="数组转换"><a href="#数组转换" class="headerlink" title="数组转换"></a>数组转换</h2><p><strong>基本类型数组-&gt;包装类数组</strong></p><ul><li><code>Integer[] sorted = Arrays.stream(nums).boxed().toArray(Integer[]::new);</code></li></ul><p><strong>基本类型数组-&gt;包装类集合</strong></p><ul><li><code>List&lt;Integer&gt; array = Arrays.stream(nums).boxed().collect(Collectors.toList());</code></li></ul><h2 id="集合排序"><a href="#集合排序" class="headerlink" title="集合排序"></a>集合排序</h2><p><strong>Collections</strong></p><ul><li><code>Collections.sort(array, (a,b)-&gt;&#123;return b-a;&#125;);</code></li></ul><h2 id="集合转换"><a href="#集合转换" class="headerlink" title="集合转换"></a>集合转换</h2><p><strong>包装类集合-&gt;包装类数组</strong></p><ul><li><code>Integer[] nums = array.stream().toArray(Integer[]::new);</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数组 </tag>
+            
+            <tag> 集合 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数组双指针</title>
+      <link href="/2022/09/02/%E6%95%B0%E7%BB%84%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+      <url>/2022/09/02/%E6%95%B0%E7%BB%84%E5%8F%8C%E6%8C%87%E9%92%88/</url>
+      
+        <content type="html"><![CDATA[<h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><p><strong>排序</strong></p><ul><li>使数组成为有序数组</li></ul><p><strong>左右指针</strong></p><ul><li>左右指针分别指向数组第一个元素和数组最后一个元素<ul><li><code>num[left]+num[right]&gt;target:right--;</code></li><li><code>num[left]+num[right]&lt;target:left++;</code></li></ul></li></ul><pre><code class="java">public int[] twoSum(int[] numbers, int target) &#123;    int left = 0;    int right = numbers.length - 1;    while (left &lt; right) &#123;      int p = numbers[left] + numbers[right];      if (p == target) &#123;        return new int[]&#123;left+1, right+1&#125;;      &#125; else if (p &gt; target) &#123;        right--;      &#125; else &#123;        left++;      &#125;    &#125;    return null;&#125;</code></pre><h2 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h2><p><strong>two sum 改造</strong></p><ul><li>增加一个搜索范围, lo, hi</li><li>成功找到一组后, lo 从下一个不同的地方开始</li></ul><pre><code class="java">public List&lt;List&lt;Integer&gt;&gt; twoSum(int[] nums, int lo, int hi, int target) &#123;    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();    int left = lo;    int right = hi;    while (left &lt; right) &#123;        int nleft = nums[left];        int nright = nums[right];        int p = nleft + nright;        if (p == target) &#123;            List&lt;Integer&gt; tmp = new ArrayList&lt;&gt;(Arrays.asList(nleft, nright, nums[lo-1]));            result.add(tmp);            while (nums[left] == nleft &amp;&amp; left &lt; right) &#123;              left++;            &#125;        &#125; else if (p &gt; target) &#123;            right--;        &#125; else &#123;            left++;        &#125;    &#125;    return result;&#125;</code></pre><p><strong>总体思路</strong></p><ul><li><p>对数组排序</p></li><li><p>外层循环遍历数组, i&#x3D;[0, length-3]</p></li><li><p><code>twoSum(numbers, i+1, length-1, target-nums[i])</code></p><ul><li>如果返回值为 null, 外层继续遍历</li><li>如果返回值不为 null, 加入结果集, 继续遍历</li></ul></li></ul><pre><code class="java">public List&lt;List&lt;Integer&gt;&gt; twoSum(int[] nums, int lo, int hi, int target) &#123;    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();    int left = lo;    int right = hi;    while (left &lt; right) &#123;        int nleft = nums[left];        int nright = nums[right];        int p = nleft + nright;        if (p == target) &#123;            List&lt;Integer&gt; tmp = new ArrayList&lt;&gt;(Arrays.asList(nleft, nright, nums[lo-1]));            result.add(tmp);            while (nums[left] == nleft &amp;&amp; left &lt; right) &#123;              left++;            &#125;        &#125; else if (p &gt; target) &#123;            right--;        &#125; else &#123;            left++;        &#125;    &#125;    return result;&#125;public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();    Arrays.sort(nums);    for (int i = 0; i &lt; nums.length-2; i++) &#123;        int num = nums[i];        List&lt;List&lt;Integer&gt;&gt; twoSumResult = twoSum(nums, i+1, nums.length-1, 0-num);        if (!twoSumResult.isEmpty()) &#123;            result.addAll(twoSumResult);            while (i+1 &lt; nums.length-2 &amp;&amp; num == nums[i+1]) &#123;              i++;            &#125;        &#125;    &#125;    return result;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 双指针 </tag>
+            
+            <tag> 数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>链表双指针</title>
       <link href="/2022/08/10/%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88/"/>
       <url>/2022/08/10/%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88/</url>
