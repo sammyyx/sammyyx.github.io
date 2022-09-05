@@ -139,7 +139,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="3">
-<input type="hidden" id="yelog_site_word_count" value="1.9k">
+<input type="hidden" id="yelog_site_word_count" value="2.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -285,12 +285,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-05 15:01:43'>2022-09-02 15:00</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-05 20:05:44'>2022-09-02 15:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:509</span>
+        <span>字数:1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -309,7 +309,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">三数之和</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9C%B0%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84"><span class="toc-text">原地操作数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E9%9B%B6"><span class="toc-text">移动零</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E5%BD%93%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">删除数组当中的重复项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2"><span class="toc-text">最长回文子串</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -431,6 +431,99 @@ public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;
         &#125;
     &#125;
     return result;
+&#125;
+</code></pre>
+<h2 id="原地操作数组"><a href="#原地操作数组" class="headerlink" title="原地操作数组"></a>原地操作数组</h2><h3 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h3><ul>
+<li>双指针, lo 指向待写入的下标, hi 指向写入值对应的下标</li>
+</ul>
+<pre><code class="java">public int removeElement(int[] nums, int val) &#123;
+    int lo = 0;
+    int hi = 0;
+    while (hi &lt; nums.length) &#123;
+      if (nums[hi] != val) &#123;
+        nums[lo] = nums[hi];
+        lo++;
+      &#125;
+      hi++;
+    &#125;
+    return lo;
+&#125;
+</code></pre>
+<h3 id="移动零"><a href="#移动零" class="headerlink" title="移动零"></a>移动零</h3><ul>
+<li>移除值为 0 的元素, 然后将 <code>[lo,nums.length-1]</code> 都置为 0</li>
+</ul>
+<pre><code class="java">public void moveZeroes(int[] nums) &#123;
+    int lo = 0;
+    int hi = 0;
+    while (hi &lt; nums.length) &#123;
+      if (nums[hi] != 0) &#123;
+        nums[lo] = nums[hi];
+        lo++;
+      &#125;
+      hi++;
+    &#125;
+    for (int i = lo; i &lt; nums.length; i++) &#123;
+      nums[i] = 0;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="删除数组当中的重复项"><a href="#删除数组当中的重复项" class="headerlink" title="删除数组当中的重复项"></a>删除数组当中的重复项</h3><ul>
+<li>数组是否为有序? <ul>
+<li>无序先排序</li>
+<li>有序, lo 指向待写入的下标(待写入的下标为被比较值下标+1), hi 指向待写入的值</li>
+</ul>
+</li>
+</ul>
+<pre><code class="java">public int removeDuplicates(int[] nums) &#123;
+    int lo = 0;
+    int hi = lo + 1;
+    while (hi &lt; nums.length) &#123;
+      // nums[lo]-&gt;被比较值
+      if (nums[hi] != nums[lo]) &#123;
+        // 指向待写入的下标
+        lo++;
+        nums[lo] = nums[hi];
+      &#125;
+      hi++;
+    &#125;
+    return lo+1;
+&#125;
+</code></pre>
+<h2 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h2><p><strong>回文子串的定义</strong></p>
+<ul>
+<li>回文子串有两种, 奇数长度 or 偶数长度<ul>
+<li>奇数长度, 双指针从同一个中点像外扩散, 直到两个指针指向的值不相等</li>
+<li>偶数长度, 双指针从相邻的中点像外扩散, 直到两个指针指向的值不相等</li>
+</ul>
+</li>
+<li>由于最长回文子串的中点有可能是原始字符串中的任意一个元素, 所以外层需要遍历 s 的每一个字符</li>
+</ul>
+<p><strong>思路</strong>: 遍历原始字符串中每个元素, 尝试以当前元素(奇偶情况)作为回文子串的中点并向外扩散</p>
+<pre><code class="java">
+private String longest(String s, int i, int j) &#123;
+    int len = s.length();
+    while (i &gt;= 0 &amp;&amp; j &lt; len &amp;&amp; s.charAt(i) == s.charAt(j)) &#123;
+        i--;
+        j++;
+    &#125;
+    return s.substring(i+1, j);
+&#125;
+
+public String longestPalindrome(String s) &#123;
+    String max = &quot;&quot;;
+    for (int i = 0; i &lt; s.length(); i++) &#123;
+        String result1 = longest(s, i, i);
+        if (max.length() &lt; result1.length()) &#123;
+            max = result1;
+        &#125;
+        if (i+1 &lt; s.length()) &#123;
+            String result2 = longest(s, i, i+1);
+            if (max.length() &lt; result2.length()) &#123;
+                max = result2;
+            &#125;
+        &#125;
+    &#125;
+    return max;
 &#125;
 </code></pre>
 
