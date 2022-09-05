@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>递归二叉树</title>
+      <link href="/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+      <url>/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前-x2F-中-x2F-后序遍历"><a href="#前-x2F-中-x2F-后序遍历" class="headerlink" title="前&#x2F;中&#x2F;后序遍历"></a>前&#x2F;中&#x2F;后序遍历</h2><p><strong>递归</strong></p><ul><li>只要是递归调用, 就存在前序和后序<ul><li>前序指递归前</li><li>后序指递归后</li></ul></li><li>由于二叉树需要先后递归左右子树, 在两次递归之间称为中序</li></ul><pre><code class="java">private List&lt;Integer&gt; track = new ArrayList&lt;&gt;();private void traverse(TreeNode root) &#123;    if (root == null) &#123;        return;    &#125;    track.add(root.val);    traverse(root.left);      // 中序遍历 track.add(root.val);    traverse(root.right);      // 后序遍历 track.add(root.val);&#125;public List&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;    traverse(root);    return track;&#125;</code></pre><h2 id="二叉树的深度"><a href="#二叉树的深度" class="headerlink" title="二叉树的深度"></a>二叉树的深度</h2><p><strong>最大深度</strong>: 根节点到「最远」叶子节点的最长路径上的节点个数</p><p><strong>思路</strong>: 遍历所有「叶子节点」, 比较「根节点」到所有「叶子节点」的长度, 取最大的一个</p><pre><code class="java">private int maxDepth = 0;private void traverse(TreeNode root, int depth) &#123;    if (root == null) &#123;        return;    &#125;    if (root.left == null &amp;&amp; root.right == null) &#123;        maxDepth = Math.max(maxDepth, depth);    &#125;    traverse(root.left, depth+1);    traverse(root.right, depth+1);&#125;public int maxDepth(TreeNode root) &#123;    traverse(root, 1);    return maxDepth;&#125;</code></pre><h2 id="利用后序位置搜集子树的信息"><a href="#利用后序位置搜集子树的信息" class="headerlink" title="利用后序位置搜集子树的信息"></a>利用后序位置搜集子树的信息</h2><h3 id="统计二叉树节点个数"><a href="#统计二叉树节点个数" class="headerlink" title="统计二叉树节点个数"></a>统计二叉树节点个数</h3><p>由于后序是在递归之后发生, 可以理解后序是站在根节点观察左右子树, 在这个位置可以拿到左右子树的遍历结果.</p><p>当前根节点对应的子树包含的节点个数 &#x3D; 「左子树」的节点个数 + 「右子树」的节点个数 + 1「根节点」</p><pre><code class="java">private int count = 0;private int traverse(TreeNode root) &#123;    if (root == null) &#123;        return 0;    &#125;    int left = traverse(root.left);    int right = traverse(root.right);    // 「左子树」的节点个数 + 「右子树」的节点个数 + 1「根节点」    count = Math.max(left+right+1, count);    return left+right+1;&#125;public int countNodeOfBinaryTree(TreeNode root) &#123;    traverse(root);    return count;&#125;</code></pre><h3 id="二叉树的最长直径"><a href="#二叉树的最长直径" class="headerlink" title="二叉树的最长直径"></a>二叉树的最长直径</h3><p>「当前子树的最长直径」&#x3D; 其「左子树」的深度 + 其「右子树」的深度</p><pre><code class="java">private int diameter = 0;private int traverse(TreeNode root) &#123;    if (root == null) &#123;          return 0;    &#125;    int left = traverse(root.left);    int right = traverse(root.right);      // 「左子树」的深度 + 其「右子树」的深度    diameter = Math.max(left+right, diameter);    return Math.max(left, right) + 1;&#125;public int diameterOfBinaryTree(TreeNode root) &#123;    traverse(root);    return diameter;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java数组集合技巧合集</title>
       <link href="/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/"/>
       <url>/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/</url>
