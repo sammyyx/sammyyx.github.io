@@ -4,6 +4,71 @@
   
     
     <entry>
+      <title>并发编程-基础求和问题</title>
+      <link href="/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>回溯算法基本框架</title>
+      <link href="/2022/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"/>
+      <url>/2022/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h2><pre><code class="java">private void traverse(...) &#123;    if (是否可以终止?) &#123;          // 结果保存        return;    &#125;    for (选择: 所有选择) &#123;        // 进行选择        traverse(...);        // 撤销选择    &#125;&#125;</code></pre><h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p><strong>visited 数组</strong></p><ul><li>使用 visited 数组记录数组中元素的使用, 跳过使用过的元素</li></ul><pre><code class="java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();private void traverse(int[] nums, boolean[] visited, LinkedList&lt;Integer&gt; track) &#123;    if (track.size() == nums.length) &#123;        List&lt;Integer&gt; copy = new LinkedList&lt;&gt;(track);        result.add(copy);        return;    &#125;    for (int i = 0; i &lt; nums.length; i++) &#123;        if (visited[i]) continue;        track.add(nums[i]);        visited[i] = true;        traverse(nums, visited, track);        visited[i] = false;        track.removeLast();    &#125;&#125;public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) &#123;    boolean[] visited = new boolean[nums.length];    LinkedList&lt;Integer&gt; track = new LinkedList&lt;&gt;();    traverse(nums, visited, track);    return result;&#125;</code></pre><h2 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h2><p><strong>判断是否可以放皇后</strong></p><ul><li>由于是逐行放皇后, 所以仅需考虑「与皇后同列」、「皇后左上」、「皇后右上」</li></ul><pre><code class="java">List&lt;List&lt;String&gt;&gt; result = new LinkedList&lt;&gt;();private void traverse(LinkedList&lt;String&gt; board, int curRow, int n) &#123;    if (board.size() == n) &#123;        result.add(new LinkedList&lt;&gt;(board));        return;    &#125;    for (int j = 0; j &lt; n; j++) &#123;        if (isValid(board, curRow, j, n)) &#123;            board.add(newBoard(n, j));            traverse(board, curRow + 1, n);            board.removeLast();        &#125;    &#125;&#125;private String newBoard(int n, int j) &#123;    String s = &quot;&quot;;    for (int i = 0; i &lt; n; i++) &#123;        if (i == j)            s += &quot;Q&quot;;        else            s += &quot;.&quot;;    &#125;    return s;&#125;private boolean isValid(List&lt;String&gt; board, int row, int column, int n) &#123;    // 同列    for (String s : board) &#123;        if (s.charAt(column) == &#39;Q&#39;)            return false;    &#125;    // 左上    for (int i = row - 1, j = column - 1; i &gt;= 0 &amp;&amp; j &gt;= 0; i--, j--) &#123;        if (board.get(i).charAt(j) == &#39;Q&#39;)            return false;    &#125;    // 右上    for (int i = row - 1, j = column + 1; i &gt;= 0 &amp;&amp; j &lt; n; i--, j++) &#123;        if (board.get(i).charAt(j) == &#39;Q&#39;)            return false;    &#125;    return true;&#125;public List&lt;List&lt;String&gt;&gt; solveNQueens(int n) &#123;    LinkedList&lt;String&gt; board = new LinkedList&lt;&gt;();    traverse(board, 0, n);    return result;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>动态规划基本框架</title>
+      <link href="/2022/09/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"/>
+      <url>/2022/09/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><p>递推公式:</p><p><code>f(n)=f(n-1)+f(n-2)</code></p><p><code>f(0)=0,f(1)=1</code></p><pre><code class="java">public int fib(int n) &#123;    if (n == 0) &#123;        return 0;    &#125;    if (n == 1) &#123;        return 1;    &#125;    int[] dp = new int[n+1];    dp[0] = 0;    dp[1] = 1;    for (int i = 2; i &lt; n+1; i++) &#123;        dp[i] = dp[i-1] + dp[i-2];    &#125;    return dp[n];&#125;</code></pre><h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</p><p>计算并返回可以凑成总金额所需的最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。</p><p>你可以认为每种硬币的数量是无限的。</p><h3 id="自顶向下-递归"><a href="#自顶向下-递归" class="headerlink" title="自顶向下(递归)"></a>自顶向下(递归)</h3><p><strong>备忘录</strong></p><ul><li><p>使用 memo 数组保存已经递归出结果的值(剪枝)</p></li><li><p>memo 数组初始化</p><ul><li>最大值为 amount + 1(没有比面值为1的硬币更小的)</li></ul></li></ul><p><strong>无解判断</strong></p><ul><li>若遍历完所有可能后, memo 值还是最大值, 则置为 -1 表示无解</li></ul><pre><code class="java">private int traverse(int[] coins, int amount, int[] memo) &#123;    if (memo[amount] != amount + 1) &#123;        return memo[amount];    &#125;    for (int i = 0; i &lt; coins.length; i++) &#123;        if (amount - coins[i] &gt;= 0) &#123;            int num = traverse(coins, amount-coins[i], memo);            if (num == -1) continue;            if (memo[amount] &gt; num + 1) &#123;                memo[amount] = num + 1;            &#125;        &#125;    &#125;    if (memo[amount] == amount + 1) &#123;      memo[amount] = -1;    &#125;    return memo[amount];&#125;public int coinChange(int[] coins, int amount) &#123;    int[] memo = new int[amount+1];    for (int i = 0; i &lt; amount + 1; i++) &#123;        memo[i] = i+1;    &#125;    memo[0] =  0;    int result = traverse(coins, amount, memo);    return result;&#125;</code></pre><h3 id="自低向上-动态规划"><a href="#自低向上-动态规划" class="headerlink" title="自低向上(动态规划)"></a>自低向上(动态规划)</h3><p><code>f(coin)=1,coin in coins</code> </p><p><code>f(coin+f(n))=f(n)+1, coin in coins, f(n) != n+1</code> </p><p><strong>版本一</strong></p><pre><code class="java">public int coinChange(int[] coins, int amount) &#123;    boolean[] visited = new boolean[amount+1];    if (amount == 0) return 0;    int[] dp = new int[amount+1];    for (int i = 0; i &lt; amount + 1; i++) &#123;        dp[i] = i+1;    &#125;    Queue&lt;Integer&gt; q = new LinkedList&lt;&gt;();    for (int i = 0; i &lt; coins.length; i++) &#123;        if (coins[i] &lt;= amount) &#123;            dp[coins[i]] = 1;            q.offer(coins[i]);        &#125;    &#125;    while (!q.isEmpty()) &#123;        long cur = q.poll();        for (int i = 0; i &lt; coins.length; i++) &#123;            long coinL = coins[i];              // 部分case cur+coin 会超出 int 范围, 所以需要使用 long            long target = cur+coinL;            if (target &gt; amount) continue;            if (dp[(int)cur] + 1 &lt; dp[(int)target]) &#123;                dp[(int)target] = dp[(int)cur] + 1;                  // 剪枝                if (!visited[(int)target]) &#123;                    q.offer((int)target);                    visited[(int)target] = true;                &#125;            &#125;        &#125;    &#125;    return dp[amount] == amount + 1 ? -1 : dp[amount];&#125;</code></pre><p>可以看出这个版本缺点很明显, 需要额外的存储空间, 而且需要考虑 int 范围问题</p><p><strong>版本二</strong></p><p>调整下遍历逻辑, 外层循环从 1 遍历到 amount, 内层循环所有可能的选择.</p><pre><code class="java">public int coinChange(int[] coins, int amount) &#123;    int[] dp = new int[amount+1];    dp[0] = 0;    for (int i = 1; i &lt; amount + 1; i++) &#123;        dp[i] = i + 1;    &#125;    for (int i = 1; i &lt; amount + 1; i++) &#123;        for (int coin: coins) &#123;            if (i - coin &lt; 0) continue;            if (dp[i-coin] == i-coin+1) continue;            dp[i] = Math.min(dp[i-coin]+1, dp[i]);        &#125;    &#125;    return dp[amount] == amount + 1 ? -1 : dp[amount]; &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 递归 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>递归二叉树</title>
       <link href="/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
       <url>/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
