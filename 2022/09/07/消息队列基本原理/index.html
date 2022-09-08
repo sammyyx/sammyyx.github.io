@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>链表双指针 | Learning Notes</title>
-  <meta name="keywords" content=" 链表 , 双指针 ">
-  <meta name="description" content="链表双指针 | Learning Notes">
+  <title>消息队列基本原理 | Learning Notes</title>
+  <meta name="keywords" content=" 消息队列 ">
+  <meta name="description" content="消息队列基本原理 | Learning Notes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。 你可以对一个单词进行如下三种操作： 插入一个字符删除一个字符替换一个字符 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;edit-distance著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。  解题思路dp数组定义">
 <meta property="og:type" content="article">
@@ -347,9 +347,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-链表双指针" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-消息队列基本原理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">链表双指针</h1>
+        <h1 class="article-title">消息队列基本原理</h1>
     
     <div class="article-meta">
         
@@ -359,7 +359,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="刷题笔记">刷题笔记</a>
+            <a  data-rel="中间件">中间件</a>
             
         </span>
         
@@ -367,21 +367,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">链表</a>
-            
-            <a class="color4">双指针</a>
+            <a class="color5">消息队列</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-05 14:49:04'>2022-08-10 13:15</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-08 20:06:34'>2022-09-07 09:47</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.3k</span>
+        <span>字数:314</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -400,7 +398,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E6%88%90%E7%8E%AF"><span class="toc-text">链表成环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%88%90%E7%8E%AF"><span class="toc-text">判断链表成环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%82%B9"><span class="toc-text">找到链表中点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E7%8E%AF%E7%9A%84%E8%B5%B7%E7%82%B9"><span class="toc-text">返回环的起点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%80%92%E6%95%B0%E7%AC%AC-k-%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text">删除倒数第 k 个节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%E8%8A%82%E7%82%B9"><span class="toc-text">两链表相交节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E9%93%BE%E8%A1%A8"><span class="toc-text">合并链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8"><span class="toc-text">合并两个链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6-k-%E4%B8%AA%E9%93%BE%E8%A1%A8"><span class="toc-text">合并 k 个链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8"><span class="toc-text">分隔链表</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9E%84%E6%88%90"><span class="toc-text">消息中间件构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">消息中间件的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">推拉模式的设计</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -416,228 +414,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="链表成环"><a href="#链表成环" class="headerlink" title="链表成环"></a>链表成环</h2><h3 id="判断链表成环"><a href="#判断链表成环" class="headerlink" title="判断链表成环"></a>判断链表成环</h3><p><strong>dummy 头节点</strong></p>
-<ul>
-<li>使用 <strong>dummy</strong> 头节点避免空指针</li>
-</ul>
-<p><strong>快慢指针</strong></p>
-<ul>
-<li>快指针走两步, 慢指针走一步, 如果快指针走到末尾节点仍未和慢指针相遇, 则链表无反, 反之, 有环</li>
-</ul>
-<pre><code class="java">public boolean hasCycle(ListNode head) &#123;
-    ListNode dummy = new ListNode();
-    dummy.next = head;
-    ListNode fast = dummy;
-    ListNode slow = dummy;
-    while (fast != null &amp;&amp; fast.next != null) &#123;
-      fast = fast.next了;.next;
-      slow = slow.next;
-      if (fast == slow) &#123;
-        return true;
-      &#125;
-    &#125;
-    return false;
-&#125;
-</code></pre>
-<h2 id="找到链表中点"><a href="#找到链表中点" class="headerlink" title="找到链表中点"></a>找到链表中点</h2><p>典型快慢指针, 判断链表成环类似</p>
-<p><strong>dummy 头节点</strong></p>
-<ul>
-<li>使用 <strong>dummy</strong> 头节点避免空指针</li>
-</ul>
-<p><strong>快慢指针(终止条件)</strong></p>
-<ul>
-<li>if fast !&#x3D; null &amp;&amp; fast.next !&#x3D; null, 快指针走两步, 慢指针走一步, if fast.next &#x3D;&#x3D; null: return slow;</li>
-</ul>
+        <h2 id="消息中间件构成"><a href="#消息中间件构成" class="headerlink" title="消息中间件构成"></a>消息中间件构成</h2><p>一句话介绍: 与 RPC 类似是一种进程间通信的方式, 生产者通过 Broker 将消息存储在队列里, 消费者通过订阅关系取到对应消息.</p>
+<p>使用 MQ 可以将调用过程异步、实现功能解耦、削峰填谷.</p>
+<p>基本架构分为「生产者」、「消费者」和「Broker」</p>
+<p><img src="./%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6.drawio.png"></p>
+<h3 id="消息中间件的设计"><a href="#消息中间件的设计" class="headerlink" title="消息中间件的设计"></a>消息中间件的设计</h3><h4 id="推拉模式的设计"><a href="#推拉模式的设计" class="headerlink" title="推拉模式的设计"></a>推拉模式的设计</h4><p>推拉模式都是消费者主动去和 Broker 建立连接(轮询或长轮询), 然后将消息拉回消费端.</p>
 <blockquote>
-<p>长度为奇数</p>
-<p>1-&gt;2(slow)-&gt;3-&gt;null(fast)</p>
-<p>长度为偶数</p>
-<p>1-&gt;2(slow)-&gt;3-&gt;4(fast)-&gt;null</p>
+<p>长轮询: 客户端发起 polling 请求, 如果服务端没有相关数据, 会 hold 住请求, 直到服务端有相关数据, 或者等待超时才返回, 返回后客户端会发起下一次 polling 请求.</p>
+<p>轮询: 客户端每隔定长时间请求一次数据, 可能有数据返回, 可能没有.</p>
+<p>长轮询为什么需要超时时间: tcp 三次握手建立的连接会通过底层 keep alive 计时器保证, 但这个连接失活发现太慢了, 消费端不能依赖这个保活手段, 所以设计了超时时间.</p>
 </blockquote>
-<p><strong>举一反三</strong></p>
-<ul>
-<li>上述终止条件对应偶数长度时, 返回的是靠前的中间节点, 如何返回靠后的?<ul>
-<li><code>return fast != null ? slow.next ? slow;</code></li>
-</ul>
-</li>
-</ul>
-<pre><code class="java">public ListNode middleNode(ListNode head) &#123;
-    ListNode dummy = new ListNode();
-    dummy.next = head;
-    ListNode fast = dummy;
-    ListNode slow = dummy;
-    while (fast != null &amp;&amp; fast.next != null) &#123;
-      fast = fast.next.next;
-      slow = slow.next;
-    &#125;
-    return fast != null ? slow.next : slow;
-&#125;
-</code></pre>
-<h3 id="返回环的起点"><a href="#返回环的起点" class="headerlink" title="返回环的起点"></a>返回环的起点</h3><p><img src="./image-20220903201209897.png"></p>
-<p>思路: 快慢指针相遇之后, 将慢指针重新指向头节点, 两个指针步长一致, 再次相遇时正好指向环的起点.</p>
-<pre><code class="java">public ListNode detectCycle(ListNode head) &#123;
-    ListNode dummy = new ListNode();
-    dummy.next = head;
-    ListNode fast = dummy;
-    ListNode slow = dummy;
-    while (fast != null &amp;&amp; fast.next != null) &#123;
-      fast = fast.next.next;
-      slow = slow.next;
-      if (fast == slow) &#123;
-        slow = dummy;
-        int index = -1;
-        while (fast != null &amp;&amp; fast != slow) &#123;
-          fast = fast.next;
-          slow = slow.next;
-        &#125;
-        return slow;
-      &#125;
-    &#125;
-    return null;
-&#125;
-</code></pre>
-<h2 id="删除倒数第-k-个节点"><a href="#删除倒数第-k-个节点" class="headerlink" title="删除倒数第 k 个节点"></a>删除倒数第 k 个节点</h2><p><strong>删除节点</strong></p>
-<ul>
-<li>例如如下链表 1-&gt;2-&gt;3, 我们如果要删除节点 2, 那么就需要用指针指向节点 2 的上一个节点, 执行 p.next &#x3D; p.next.next 即可.</li>
-</ul>
-<p><strong>dummy节点</strong></p>
-<blockquote>
-<p>dummy-&gt;head-&gt;…</p>
-</blockquote>
-<ul>
-<li>如果我们要删除头节点, 那么我们指针如何指向头节点的上一个节点, 所以需要一个 dummy 节点</li>
-</ul>
-<p><strong>快慢指针</strong></p>
-<blockquote>
-<p>为了定位倒数 k+1 个节点</p>
-<p>dummy-&gt;1-&gt;2-&gt;3(slow)-&gt;4-&gt;5-&gt;6-&gt;null(fast)</p>
-</blockquote>
-<p>当 slow 和 fast 之间始终间隔 k 个节点时, 如果 fast 节点遍历到 null, 那么 slow 节点正好指向倒数第 k+1 个节点</p>
-<pre><code class="java"> public ListNode removeNthFromEnd(ListNode head, int n) &#123;
-     ListNode dummy = new ListNode();
-     dummy.next = head;
-     ListNode fast = head;
-     ListNode slow = dummy;
-     // 与 slow 间隔 k 个节点
-     for (int i = 0; i &lt; n; i++) &#123;
-       fast = fast.next;
-     &#125;
-     while (fast != null) &#123;
-       slow = slow.next;
-       fast = fast.next;
-     &#125;
-     slow.next = slow.next.next;
-     return dummy.next;
- &#125;
-</code></pre>
-<h2 id="两链表相交节点"><a href="#两链表相交节点" class="headerlink" title="两链表相交节点"></a>两链表相交节点</h2><p>原始两条链表如下</p>
-<p>a1-&gt;a2-&gt;b1-&gt;b2</p>
-<p>c1-&gt;c2–&gt;d1-&gt;d2-&gt;b1-&gt;d3</p>
-<p>将链表1和链表2拼接起来, 形成两条长度一样的链表, 可以发现在遍历完之前 b1 节点重合了</p>
-<p>a1-&gt;a2-&gt;b1-&gt;b2-&gt;null-&gt;c1-&gt;c2–&gt;d1-&gt;d2-&gt;b1-&gt;d3-&gt;null</p>
-<p>c1-&gt;c2–&gt;d1-&gt;d2-&gt;b1-&gt;d3-&gt;null-&gt;a1-&gt;a2-&gt;b1-&gt;b2-&gt;null</p>
-<p>解题的关键是将链表1和链表2拼接起来, 判断的条件是如果在到达最后的 null 节点之前重合了, 那么节点相交</p>
-<pre><code class="java">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;
-    ListNode p1 = headA;
-    ListNode p2 = headB;
-    while (p1 != p2) &#123;
-      if (p1 == null) &#123;
-        p1 = headB;
-      &#125; else &#123;
-        p1 = p1.next;
-      &#125;
-      if (p2 == null) &#123;
-        p2 = headA;
-      &#125; else &#123;
-        p2 = p2.next;
-      &#125;
-    &#125;
-    return p1;
-&#125;
-</code></pre>
-<h2 id="合并链表"><a href="#合并链表" class="headerlink" title="合并链表"></a>合并链表</h2><h3 id="合并两个链表"><a href="#合并两个链表" class="headerlink" title="合并两个链表"></a>合并两个链表</h3><p><strong>dummy 节点</strong></p>
-<ul>
-<li>使用 dummy 节点保存新链表头指针的引用</li>
-</ul>
-<pre><code class="java">public ListNode mergeTwoLists(ListNode list1, ListNode list2) &#123;
-    ListNode p1 = list1;
-    ListNode p2 = list2;
-    ListNode dummy = new ListNode();
-    ListNode p = dummy;
-    while (p1 != null &amp;&amp; p2 != null) &#123;
-      if (p1.val &gt; p2.val) &#123;
-        p.next = p2;
-        p2 = p2.next;
-      &#125; else &#123;
-        p.next = p1;
-        p1 = p1.next;
-      &#125;
-      p = p.next;
-    &#125;
-    if (p1 != null) &#123;
-      p.next = p1;
-    &#125;
-    if (p2 != null) &#123;
-      p.next = p2;
-    &#125;
-    return dummy.next;
-&#125;
-</code></pre>
-<h3 id="合并-k-个链表"><a href="#合并-k-个链表" class="headerlink" title="合并 k 个链表"></a>合并 k 个链表</h3><p><strong>优先级队列</strong></p>
-<ul>
-<li>使用 PriorityQueue 保存不同链表的头节点, 每次从里面取出一个 val 最小的添加到新链表中</li>
-</ul>
-<pre><code class="java">PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((ListNode ln1, ListNode ln2)-&gt;&#123;return ln1.val - ln2.val;&#125;);
-</code></pre>
-<pre><code class="java">public ListNode mergeKLists(ListNode[] lists) &#123;
-    PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((ListNode ln1, ListNode ln2)-&gt;&#123;return ln1.val - ln2.val;&#125;);
-    ListNode dummy = new ListNode();
-    ListNode p = dummy;
-    for (ListNode ln: lists) &#123;
-      if (ln != null) &#123;
-        pq.offer(ln);
-      &#125;
-    &#125;
-    while (!pq.isEmpty()) &#123;
-      ListNode n1 = pq.poll();
-      p.next = n1;
-      p = p.next;
-      if (n1.next != null) &#123;
-        pq.offer(n1.next);
-      &#125;
-    &#125;
-    return dummy.next;
-&#125;
-</code></pre>
-<h2 id="分隔链表"><a href="#分隔链表" class="headerlink" title="分隔链表"></a>分隔链表</h2><p><strong>链表拆分, 注意切断原有联系</strong></p>
-<blockquote>
-<p>原链表: 1-&gt;5-&gt;3-&gt;4-&gt;6</p>
-<p>新链表(smaller): 1-&gt;3-&gt;4(-&gt;6)</p>
-<p>注意节点 4 后面还连着节点 6, 必须把其置为 null.</p>
-</blockquote>
-<pre><code class="java">public ListNode partition(ListNode head, int x) &#123;
-    ListNode smaller = new ListNode();
-    ListNode bigger = new ListNode();
-    ListNode p1 = smaller;
-    ListNode p2 = bigger;
-    ListNode p = head;
-    while (p != null) &#123;
-      if (p.val &lt; x) &#123;
-        p1.next = p;
-        p = p.next;
-        p1 = p1.next;
-      &#125; else &#123;
-        p2.next = p;
-        p = p.next;
-        p2 = p2.next;
-      &#125;
-    &#125;
-    // 切断原有联系
-    p2.next = null;
-    p1.next = bigger.next;
-    return smaller.next;
-&#125;
-</code></pre>
+<p>推拉模式在消息中间件中如何定义?</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 施工中... </span>

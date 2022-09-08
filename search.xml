@@ -4,13 +4,75 @@
   
     
     <entry>
+      <title>动态规划经典题-编辑距离</title>
+      <link href="/2022/09/08/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%8F%E5%85%B8%E9%A2%98-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/"/>
+      <url>/2022/09/08/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%8F%E5%85%B8%E9%A2%98-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。</p><p>你可以对一个单词进行如下三种操作：</p><p>插入一个字符<br>删除一个字符<br>替换一个字符</p><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/edit-distance">https://leetcode.cn/problems/edit-distance</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><strong>dp数组定义</strong></p><p>有字符串 s1 和 s2, 求 s1 -&gt; s2 的最短距离</p><pre><code>dp[i][j] : s1[0,i] 和 s2[0,j] 的最短编辑距离</code></pre><p><strong>选择对 dp 数组的影响</strong></p><p>当 <code> s1[i] == s2[j]</code> 时, 此时选择跳过当前字符, <code>dp[i][j]=dp[i-1][j-1]</code></p><p>当 <code>s1[i] != s2[j]</code> 时, 此时有三种选择, 取三种选择中最小的一个即可,<code> Math.min(dp[i-1][j]+1,dp[i-1][j-1]+1,dp[i][j-1]+1)</code></p><ul><li>删除当前字符, 那么 <code>dp[i][j]=dp[i-1][j]+1</code></li><li>替换当前字符, 那么 <code>dp[i][j]=dp[i-1][j-1]+1</code></li><li>新增当前字符, 那么<code>dp[i][j]=dp[i][j-1]+1</code></li></ul><h3 id="自顶向下-递归解法"><a href="#自顶向下-递归解法" class="headerlink" title="自顶向下(递归解法)"></a>自顶向下(递归解法)</h3><pre><code class="java">public int minDistance(String word1, String word2) &#123;        int[][] memo = new int[word1.length()][word2.length()];        for (int i = 0; i &lt; word1.length(); i++) &#123;            for (int j = 0; j &lt; word2.length(); j++) &#123;                memo[i][j] = -1;            &#125;        &#125;        return dp(word1, word1.length()-1, word2,word2.length()-1, memo);    &#125;    public int dp(String word1, int i, String word2, int j, int[][] memo) &#123;        if (i == -1) return j+1;        if (j == -1) return i+1;        if (memo[i][j] != -1) return memo[i][j];        if (word1.charAt(i) == word2.charAt(j)) &#123;            memo[i][j] = dp(word1, i-1, word2, j-1, memo);        &#125; else &#123;            memo[i][j] = Math.min(Math.min(dp(word1, i-1, word2, j,memo)+1,dp(word1, i-1, word2, j-1,memo)+1),dp(word1, i, word2, j-1,memo)+1);        &#125;        return memo[i][j];    &#125;</code></pre><h3 id="自底向上-动态规划"><a href="#自底向上-动态规划" class="headerlink" title="自底向上(动态规划)"></a>自底向上(动态规划)</h3><pre><code>if s1[i] == s1[j]: dp[i][j]=dp[i-1][j-1]if s1[i] != s1[j]:     dp[i][j]=min(dp[i-1][j]+1,dp[i-1][j-1]+1,dp[i][j-1]+1)</code></pre><p>从上面的推导公式可以看出, 二维数组 <code>dp[i][j]</code> 这个格子只与其 斜左上, 上, 左 三个格子相关, 即: 只要知道这三个格子的值就能推导出  <code>dp[i][j]</code></p><pre><code class="java">public int minDistance(String word1, String word2) &#123;        int[][] dp = new int[word1.length()+1][word2.length()+1];        for (int i = 0; i &lt;= word1.length(); i++) &#123;            for (int j = 0; j &lt;= word2.length(); j++) &#123;                dp[i][j] = -1;            &#125;        &#125;        for (int i = 0; i &lt;= word1.length(); i++) &#123;            dp[i][0] = i;        &#125;        for (int i = 0; i &lt;= word2.length(); i++) &#123;            dp[0][i] = i;        &#125;        for (int i = 1; i &lt;= word1.length(); i++) &#123;            for (int j = 1; j &lt;= word2.length(); j++) &#123;                if (word1.charAt(i-1) == word2.charAt(j-1)) &#123;                    dp[i][j] = dp[i-1][j-1];                &#125; else &#123;                    dp[i][j] = Math.min(Math.min(dp[i-1][j],dp[i][j-1]),dp[i-1][j-1]) + 1;                &#125;            &#125;        &#125;        return dp[word1.length()][word2.length()];    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>消息队列基本原理</title>
+      <link href="/2022/09/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"/>
+      <url>/2022/09/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="消息中间件构成"><a href="#消息中间件构成" class="headerlink" title="消息中间件构成"></a>消息中间件构成</h2><p>一句话介绍: 与 RPC 类似是一种进程间通信的方式, 生产者通过 Broker 将消息存储在队列里, 消费者通过订阅关系取到对应消息.</p><p>使用 MQ 可以将调用过程异步、实现功能解耦、削峰填谷.</p><p>基本架构分为「生产者」、「消费者」和「Broker」</p><p><img src="./%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6.drawio.png"></p><h3 id="消息中间件的设计"><a href="#消息中间件的设计" class="headerlink" title="消息中间件的设计"></a>消息中间件的设计</h3><h4 id="推拉模式的设计"><a href="#推拉模式的设计" class="headerlink" title="推拉模式的设计"></a>推拉模式的设计</h4><p>推拉模式都是消费者主动去和 Broker 建立连接(轮询或长轮询), 然后将消息拉回消费端.</p><blockquote><p>长轮询: 客户端发起 polling 请求, 如果服务端没有相关数据, 会 hold 住请求, 直到服务端有相关数据, 或者等待超时才返回, 返回后客户端会发起下一次 polling 请求.</p><p>轮询: 客户端每隔定长时间请求一次数据, 可能有数据返回, 可能没有.</p><p>长轮询为什么需要超时时间: tcp 三次握手建立的连接会通过底层 keep alive 计时器保证, 但这个连接失活发现太慢了, 消费端不能依赖这个保活手段, 所以设计了超时时间.</p></blockquote><p>推拉模式在消息中间件中如何定义?</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 中间件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 消息队列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>并发编程-基础求和问题</title>
       <link href="/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/"/>
       <url>/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="1-…-100求和问题"><a href="#1-…-100求和问题" class="headerlink" title="1+…+100求和问题"></a>1+…+100求和问题</h2><h3 id="FutureTask-Callable"><a href="#FutureTask-Callable" class="headerlink" title="FutureTask+Callable"></a>FutureTask+Callable</h3><pre><code class="java">package com.samyyx.test;import java.util.concurrent.Callable;import java.util.concurrent.ExecutionException;import java.util.concurrent.FutureTask;/** * 1+...+n */public final class App &#123;    static class Adder implements Callable&lt;Long&gt; &#123;        private long start;        private long end;        public Adder(long start, long end) &#123;            this.start = start;            this.end = end;        &#125;        @Override        public Long call() throws Exception &#123;            System.out.println(Thread.currentThread().getId());            long sum = 0;            for (long i = start; i &lt;= end; i++) &#123;                sum += i;            &#125;            return sum;        &#125;    &#125;    public static void main(String[] args) &#123;        // 并发执行        FutureTask&lt;Long&gt; f1 = new FutureTask&lt;&gt;(new Adder(1, n / 2));        FutureTask&lt;Long&gt; f2 = new FutureTask&lt;&gt;(new Adder(n / 2 + 1, n));        Thread t1 = new Thread(f1);        Thread t2 = new Thread(f2);        t1.start();        t2.start();        try &#123;            long sum = f1.get() + f2.get();            System.out.println(&quot;parallel sum:&quot;+sum);            long cost = System.currentTimeMillis() - cur;            System.out.println(&quot;parallel cost:&quot; + cost);        &#125; catch (InterruptedException | ExecutionException e) &#123;            e.printStackTrace();        &#125;          // 串行执行        cur = System.currentTimeMillis();        long sum = 0;        for (long i = 1; i &lt;= n; i++) &#123;            sum += i;        &#125;        System.out.println(&quot;serial sum:&quot;+sum);        long cost = System.currentTimeMillis() - cur;        System.out.println(&quot;serial cost:&quot; + cost);    &#125;&#125;</code></pre><h3 id="countDownLatch"><a href="#countDownLatch" class="headerlink" title="countDownLatch"></a>countDownLatch</h3><pre><code></code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 并发编程 </tag>
+            
+        </tags>
       
     </entry>
     
