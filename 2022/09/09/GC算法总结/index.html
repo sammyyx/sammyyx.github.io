@@ -399,7 +399,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:19:51'>2022-09-09 14:05</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:20:22'>2022-09-09 14:05</time>
         
     </div>
     <div class="article-meta">
@@ -530,7 +530,7 @@ class A &#123;
 <p>新生代对象的特点是：创建出来没多久就可以被回收（例如虚拟机栈中创建的对象，方法出栈就会销毁）。也就是说，每次回收时，大部分是垃圾对象，所以新生代适用于复制算法。</p>
 <p>老年代的特点是：经过多次GC，依然存活。也就是说，每次GC时，大部分是存活对象，所以老年代适用于标记整理算法。</p>
 <p><strong>新生代中的不可达对象不一定是垃圾</strong></p>
-<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-5.drawio.png" alt="循环引用计数-第 5 页.drawio"></p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-5.drawio.png"></p>
 <p>如上图所示, young 区的 A 对象没有被 GC Roots 引用, 但是却被 old 区对象引用.此时 A 对象不是垃圾. 不能被 GC 掉.</p>
 <p><strong>如何解决?</strong></p>
 <p>引入一个卡表解决. 卡表最简单的形式是一个字节数组.</p>
