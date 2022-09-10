@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>消息队列基本原理 | Learning Notes</title>
-  <meta name="keywords" content=" 消息队列 ">
-  <meta name="description" content="消息队列基本原理 | Learning Notes">
+  <title>GC算法总结 | Learning Notes</title>
+  <meta name="keywords" content=" GC , JVM ">
+  <meta name="description" content="GC算法总结 | Learning Notes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring MVC 和 Spring Boot 的区别">
@@ -370,9 +370,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-消息队列基本原理" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-GC算法总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">消息队列基本原理</h1>
+        <h1 class="article-title">GC算法总结</h1>
     
     <div class="article-meta">
         
@@ -382,7 +382,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="中间件">中间件</a>
+            <a  data-rel="Java">Java</a>
             
         </span>
         
@@ -390,19 +390,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">消息队列</a>
+            <a class="color3">GC</a>
+            
+            <a class="color4">JVM</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-08 20:06:34'>2022-09-07 09:47</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:12:08'>2022-09-09 14:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:314</span>
+        <span>字数:2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -421,7 +423,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9E%84%E6%88%90"><span class="toc-text">消息中间件构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">消息中间件的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">推拉模式的设计</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%9B%9E%E6%94%B6"><span class="toc-text">判断对象是否可以回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-text">引用计数法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">存在的问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-text">可达性分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GC-Roots"><span class="toc-text">GC Roots</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%9B%9E%E6%94%B6"><span class="toc-text">不同引用类型的回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%BC%BA%E5%BC%95%E7%94%A8"><span class="toc-text">2.1 强引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E8%BD%AF%E5%BC%95%E7%94%A8"><span class="toc-text">2.2 软引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-text">2.3 弱引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E8%99%9A%E5%BC%95%E7%94%A8"><span class="toc-text">2.4 虚引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STW"><span class="toc-text">STW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC-%E7%AE%97%E6%B3%95"><span class="toc-text">GC 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4"><span class="toc-text">标记-清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86"><span class="toc-text">标记-整理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-text">分代算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC-%E5%99%A8"><span class="toc-text">GC 器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">CMS 收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">G1 收集器</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -437,17 +439,132 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="消息中间件构成"><a href="#消息中间件构成" class="headerlink" title="消息中间件构成"></a>消息中间件构成</h2><p>一句话介绍: 与 RPC 类似是一种进程间通信的方式, 生产者通过 Broker 将消息存储在队列里, 消费者通过订阅关系取到对应消息.</p>
-<p>使用 MQ 可以将调用过程异步、实现功能解耦、削峰填谷.</p>
-<p>基本架构分为「生产者」、「消费者」和「Broker」</p>
-<p><img src="./%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6.drawio.png"></p>
-<h3 id="消息中间件的设计"><a href="#消息中间件的设计" class="headerlink" title="消息中间件的设计"></a>消息中间件的设计</h3><h4 id="推拉模式的设计"><a href="#推拉模式的设计" class="headerlink" title="推拉模式的设计"></a>推拉模式的设计</h4><p>推拉模式都是消费者主动去和 Broker 建立连接(轮询或长轮询), 然后将消息拉回消费端.</p>
-<blockquote>
-<p>长轮询: 客户端发起 polling 请求, 如果服务端没有相关数据, 会 hold 住请求, 直到服务端有相关数据, 或者等待超时才返回, 返回后客户端会发起下一次 polling 请求.</p>
-<p>轮询: 客户端每隔定长时间请求一次数据, 可能有数据返回, 可能没有.</p>
-<p>长轮询为什么需要超时时间: tcp 三次握手建立的连接会通过底层 keep alive 计时器保证, 但这个连接失活发现太慢了, 消费端不能依赖这个保活手段, 所以设计了超时时间.</p>
-</blockquote>
-<p>推拉模式在消息中间件中如何定义?</p>
+        <h2 id="判断对象是否可以回收"><a href="#判断对象是否可以回收" class="headerlink" title="判断对象是否可以回收"></a>判断对象是否可以回收</h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>每个对象会有一个引用计数器, 记录这个对象被引用的次数. 当引用次数为 0 时, 代表这个对象可以被 GC 回收.</p>
+<h4 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h4><ul>
+<li>无法处理循环引用的情况.</li>
+<li>堆内对象每一次引用赋值和引用清楚, 都会伴随着加减法的操作, 会带来一定的性能开销.</li>
+</ul>
+<p><strong>循环引用问题</strong></p>
+<pre><code>class A &#123;
+    private B b;
+    public void setB(B b) &#123;
+        this.b = b;
+    &#125;
+&#125;
+
+class B &#123;
+    private A a = new A();
+    public void setA(A a) &#123;
+        this.a = a;
+    &#125;
+&#125;
+
+public void method() &#123;
+    A a = new A();
+    B b = new B();
+    a.setB(b);
+    b.setA(a);
+&#125;
+</code></pre>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0.drawio-2775569.png" alt="循环引用计数.drawio"></p>
+<h3 id="可达性分析法"><a href="#可达性分析法" class="headerlink" title="可达性分析法"></a>可达性分析法</h3><p>可达性分析法定义了 <code>GC Roots</code> 对象作为起始点, 从这个起点开始向下搜索, 每一条可达路径被称为引用链, 当一个对象没有人意一条引用链可以到达 <code>GC Roots</code> 时, 那么就对这个对象进行第一次可回收标记.</p>
+<h4 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h4><p>堆外指向堆内的引用, 下面这些对象可以作为 GC Roots</p>
+<ul>
+<li>代码中某一方法的局部变量</li>
+<li>类静态变量</li>
+<li>常量</li>
+<li>本地方法栈中引用的对象</li>
+<li>已启动且未停止的线程</li>
+</ul>
+<p>以下面代码为例</p>
+<pre><code class="java">class Test &#123;
+    private static A a = new A(); // 静态变量
+    public static final String CONTANT = &quot;I am a string&quot;; // 常量
+
+    public static void main(String[] args) &#123;
+        A innerA = new A(); // 局部变量
+    &#125;
+&#125;
+
+class A &#123;
+    ...
+&#125;
+</code></pre>
+<p>![循环引用计数-第 2 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 2 页.drawio-2776592.png)</p>
+<p>此时 GC Roots 状态为</p>
+<p>![循环引用计数-第 3 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 3 页.drawio.png)</p>
+<p>当 main 方法执行完毕时, 栈帧出栈, 此时 GC Roots 状态为</p>
+<p>![循环引用计数-第 4 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 4 页.drawio-2776947.png)</p>
+<p>此时 A2 被打上标记</p>
+<p>当 GC 判定某一对象不再通过任一形式被引用时, GC 会调用该对象的 finalize 方法, 且一个对象只会执行一次 finalize 方法. 方法被执行时, 可以进行任何操作, 包括将这个对象再次赋值给某一变量引用</p>
+<p><strong>自救</strong>: 在 finalize 方法中, 将这个对象的引用再次赋值给某一变量</p>
+<h3 id="不同引用类型的回收"><a href="#不同引用类型的回收" class="headerlink" title="不同引用类型的回收"></a>不同引用类型的回收</h3><h4 id="2-1-强引用"><a href="#2-1-强引用" class="headerlink" title="2.1 强引用"></a>2.1 强引用</h4><p>通过关键字new的对象就是强引用对象，强引用指向的对象任何时候都不会被回收，宁愿OOM也不会回收。</p>
+<h4 id="2-2-软引用"><a href="#2-2-软引用" class="headerlink" title="2.2 软引用"></a>2.2 软引用</h4><p>如果一个对象持有软引用，那么当JVM堆空间不足时，会被回收。</p>
+<p>一个类的软引用可以通过java.lang.ref.SoftReference持有。</p>
+<h4 id="2-3-弱引用"><a href="#2-3-弱引用" class="headerlink" title="2.3 弱引用"></a>2.3 弱引用</h4><p>如果一个对象持有弱引用，那么在GC时，只要发现弱引用对象，就会被回收。</p>
+<p>一个类的弱引用可以通过java.lang.ref.WeakReference持有。</p>
+<h4 id="2-4-虚引用"><a href="#2-4-虚引用" class="headerlink" title="2.4 虚引用"></a>2.4 虚引用</h4><p>几乎和没有一样，随时可以被回收。</p>
+<p>通过PhantomReference持有。</p>
+<h3 id="STW"><a href="#STW" class="headerlink" title="STW"></a>STW</h3><p><strong>为什么会有 STW</strong>: 如果程序一边执行, 一边进行可达性分析的标记操作, 那么有可能刚标记完一个对象, 这个对象又被再次被赋值给其他的引用. 这样就有可能回收掉正在使用的对象. 解决方式就是使用 STW, STW 会在所有线程到达一个安全点时, 暂停掉所有应用线程的执行, 然后开始专心的标记垃圾对象.</p>
+<p><strong>本质</strong>: 保证数据的一致性.</p>
+<p><strong>安全点</strong>: 引用关系不会发生变化的点</p>
+<h2 id="GC-算法"><a href="#GC-算法" class="headerlink" title="GC 算法"></a>GC 算法</h2><p>三个基础的 GC 算法: 标记-清除, 标记-整理, 复制算法</p>
+<h3 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h3><ul>
+<li>标记阶段: 通过可达性分析将不可达的对象标记出来</li>
+<li>清除阶段: 将标记阶段标记的垃圾对象清除</li>
+</ul>
+<p>缺点: 回收后会产生大量不连续的内存空间(碎片), 由于 Java 在分配内存时通常是按连续内存分配, 所以当碎片空间不足以分配给新对象时, 就会造成内存浪费</p>
+<h3 id="标记-整理"><a href="#标记-整理" class="headerlink" title="标记-整理"></a>标记-整理</h3><ul>
+<li>标记阶段: 通过可达性分析将不可达的对象标记出来</li>
+<li>碎片整理: 将所有存活对象都向一边移动</li>
+<li>清除阶段: 直接清理掉边界外的内存</li>
+</ul>
+<p>缺点: 碎片整理会有性能消耗</p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>将内存空间分为两块, 每次只使用其中一块内存. 当 GC 执行时, 会将非垃圾对象复制到另一块内存中, 保证内存连续性, 然后直接情况之前使用的内存.</p>
+<p>缺点: 会损失一半的内存</p>
+<h3 id="分代算法"><a href="#分代算法" class="headerlink" title="分代算法"></a>分代算法</h3><p>复制算法和标记整理算法都有各自适合的使用场景。</p>
+<p>复制算法适用于每次回收时，存活对象少的场景，这样就会减少复制量。</p>
+<p>标记整理算法适用于回收时，存活对象多的场景，这样就会减少内存碎片的产生，碎片整理的代价就会小很多。</p>
+<p>分代算法将内存区域分为两部分：新生代和老年代。</p>
+<p>根据新生代和老年代中对象的不同特点，使用不同的GC算法。</p>
+<p>新生代对象的特点是：创建出来没多久就可以被回收（例如虚拟机栈中创建的对象，方法出栈就会销毁）。也就是说，每次回收时，大部分是垃圾对象，所以新生代适用于复制算法。</p>
+<p>老年代的特点是：经过多次GC，依然存活。也就是说，每次GC时，大部分是存活对象，所以老年代适用于标记整理算法。</p>
+<p><strong>新生代中的不可达对象不一定是垃圾</strong></p>
+<p>![循环引用计数-第 5 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 5 页.drawio-2782923.png)</p>
+<p>如上图所示, young 区的 A 对象没有被 GC Roots 引用, 但是却被 old 区对象引用.此时 A 对象不是垃圾. 不能被 GC 掉.</p>
+<p><strong>如何解决?</strong></p>
+<p>引入一个卡表解决. 卡表最简单的形式是一个字节数组.</p>
+<p><code>CARD_TABLE[this address &gt;&gt; 9]=0</code></p>
+<p>HotSpot 中使用的卡页是 2 的 9 次幂, 卡表的每一个元素就对应了容量为 512 字节的内存块. 只要卡页内有一个对象的字段存在跨代指针, 整个卡表的这个元素就会被标识为 1, 因此可以很轻易的判断出哪些内存块中包含跨代指针.</p>
+<h2 id="GC-器"><a href="#GC-器" class="headerlink" title="GC 器"></a>GC 器</h2><h3 id="CMS-收集器"><a href="#CMS-收集器" class="headerlink" title="CMS 收集器"></a>CMS 收集器</h3><p>CMS 全称 Concurrent Mark Sweep, 是一款并发的、使用标记-清除算法, 针对老年代的垃圾回收器, 其最大的特点就是让垃圾收集线程与用户线程同时工作.</p>
+<p>CMS 收集器的过程</p>
+<ol>
+<li>初始标记, STW, 标记 GCRoots 直接关联的对象</li>
+<li>并发标记, 没有 STW, 可以与用户线程并发运行</li>
+<li>重新标记, STW, 修正并发标记期间用户程序继续运行导致的变动</li>
+<li>并发清除, 不需要移动存活对象</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ul>
+<li>浮动垃圾, 是由并发清理过程导致的, 由于没有 STW, 用户进程会有新垃圾产生<ul>
+<li>-XX:CMSInitialOccupancyFraction</li>
+</ul>
+</li>
+<li>内存碎片<ul>
+<li>-XX:UseCMSCompactAtFullCollection 可以指定开启碎片整理</li>
+<li>XX:CMSFullGCBeforeCompaction 或者是多少次 FGC 后启动碎片整理</li>
+</ul>
+</li>
+<li>对 CPU 资源敏感</li>
+</ul>
+<h3 id="G1-收集器"><a href="#G1-收集器" class="headerlink" title="G1 收集器"></a>G1 收集器</h3><p>整体来看, 是基于标记-整理算法实现的收集器</p>
+<p>局部来看, region与region之间是使用的复制算法</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>属于分代型垃圾回收器, 但新生代和老年代步物理隔离, 不用担心每个代内存是否足够</li>
+<li>将整个堆分为 2048 个大小相同的独立 Region 块</li>
+<li>有一个巨型区, 但巨型对象超过分区容量一半时, 会存入巨型区</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 施工中... </span>

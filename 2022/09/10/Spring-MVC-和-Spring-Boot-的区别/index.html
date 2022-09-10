@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>消息队列基本原理 | Learning Notes</title>
-  <meta name="keywords" content=" 消息队列 ">
-  <meta name="description" content="消息队列基本原理 | Learning Notes">
+  <title>Spring MVC 和 Spring Boot 的区别 | Learning Notes</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Spring MVC 和 Spring Boot 的区别 | Learning Notes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring MVC 和 Spring Boot 的区别">
@@ -370,39 +370,24 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-消息队列基本原理" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Spring-MVC-和-Spring-Boot-的区别" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">消息队列基本原理</h1>
+        <h1 class="article-title">Spring MVC 和 Spring Boot 的区别</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="中间件">中间件</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">消息队列</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-08 20:06:34'>2022-09-07 09:47</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-10 09:32:08'>2022-09-10 09:32</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:314</span>
+        <span>字数:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -421,7 +406,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9E%84%E6%88%90"><span class="toc-text">消息中间件构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">消息中间件的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">推拉模式的设计</span></a></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -437,18 +422,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="消息中间件构成"><a href="#消息中间件构成" class="headerlink" title="消息中间件构成"></a>消息中间件构成</h2><p>一句话介绍: 与 RPC 类似是一种进程间通信的方式, 生产者通过 Broker 将消息存储在队列里, 消费者通过订阅关系取到对应消息.</p>
-<p>使用 MQ 可以将调用过程异步、实现功能解耦、削峰填谷.</p>
-<p>基本架构分为「生产者」、「消费者」和「Broker」</p>
-<p><img src="./%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6.drawio.png"></p>
-<h3 id="消息中间件的设计"><a href="#消息中间件的设计" class="headerlink" title="消息中间件的设计"></a>消息中间件的设计</h3><h4 id="推拉模式的设计"><a href="#推拉模式的设计" class="headerlink" title="推拉模式的设计"></a>推拉模式的设计</h4><p>推拉模式都是消费者主动去和 Broker 建立连接(轮询或长轮询), 然后将消息拉回消费端.</p>
-<blockquote>
-<p>长轮询: 客户端发起 polling 请求, 如果服务端没有相关数据, 会 hold 住请求, 直到服务端有相关数据, 或者等待超时才返回, 返回后客户端会发起下一次 polling 请求.</p>
-<p>轮询: 客户端每隔定长时间请求一次数据, 可能有数据返回, 可能没有.</p>
-<p>长轮询为什么需要超时时间: tcp 三次握手建立的连接会通过底层 keep alive 计时器保证, 但这个连接失活发现太慢了, 消费端不能依赖这个保活手段, 所以设计了超时时间.</p>
-</blockquote>
-<p>推拉模式在消息中间件中如何定义?</p>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 施工中... </span>
     </div>
