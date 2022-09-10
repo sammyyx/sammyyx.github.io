@@ -149,7 +149,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="11">
-<input type="hidden" id="yelog_site_word_count" value="7.4k">
+<input type="hidden" id="yelog_site_word_count" value="7.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -399,12 +399,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:12:08'>2022-09-09 14:05</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:19:51'>2022-09-09 14:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2k</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -466,7 +466,7 @@ public void method() &#123;
     b.setA(a);
 &#125;
 </code></pre>
-<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0.drawio-2775569.png" alt="循环引用计数.drawio"></p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0.drawio.png"></p>
 <h3 id="可达性分析法"><a href="#可达性分析法" class="headerlink" title="可达性分析法"></a>可达性分析法</h3><p>可达性分析法定义了 <code>GC Roots</code> 对象作为起始点, 从这个起点开始向下搜索, 每一条可达路径被称为引用链, 当一个对象没有人意一条引用链可以到达 <code>GC Roots</code> 时, 那么就对这个对象进行第一次可回收标记.</p>
 <h4 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h4><p>堆外指向堆内的引用, 下面这些对象可以作为 GC Roots</p>
 <ul>
@@ -490,11 +490,11 @@ class A &#123;
     ...
 &#125;
 </code></pre>
-<p>![循环引用计数-第 2 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 2 页.drawio-2776592.png)</p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-2.drawio.png" alt="循环引用计数-第 2 页.drawio"></p>
 <p>此时 GC Roots 状态为</p>
-<p>![循环引用计数-第 3 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 3 页.drawio.png)</p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-3.drawio.png"></p>
 <p>当 main 方法执行完毕时, 栈帧出栈, 此时 GC Roots 状态为</p>
-<p>![循环引用计数-第 4 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 4 页.drawio-2776947.png)</p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-4.drawio.png" alt="循环引用计数-第 4 页.drawio"></p>
 <p>此时 A2 被打上标记</p>
 <p>当 GC 判定某一对象不再通过任一形式被引用时, GC 会调用该对象的 finalize 方法, 且一个对象只会执行一次 finalize 方法. 方法被执行时, 可以进行任何操作, 包括将这个对象再次赋值给某一变量引用</p>
 <p><strong>自救</strong>: 在 finalize 方法中, 将这个对象的引用再次赋值给某一变量</p>
@@ -530,7 +530,7 @@ class A &#123;
 <p>新生代对象的特点是：创建出来没多久就可以被回收（例如虚拟机栈中创建的对象，方法出栈就会销毁）。也就是说，每次回收时，大部分是垃圾对象，所以新生代适用于复制算法。</p>
 <p>老年代的特点是：经过多次GC，依然存活。也就是说，每次GC时，大部分是存活对象，所以老年代适用于标记整理算法。</p>
 <p><strong>新生代中的不可达对象不一定是垃圾</strong></p>
-<p>![循环引用计数-第 5 页.drawio](.&#x2F;GC算法总结&#x2F;循环引用计数-第 5 页.drawio-2782923.png)</p>
+<p><img src="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0-5.drawio.png" alt="循环引用计数-第 5 页.drawio"></p>
 <p>如上图所示, young 区的 A 对象没有被 GC Roots 引用, 但是却被 old 区对象引用.此时 A 对象不是垃圾. 不能被 GC 掉.</p>
 <p><strong>如何解决?</strong></p>
 <p>引入一个卡表解决. 卡表最简单的形式是一个字节数组.</p>
