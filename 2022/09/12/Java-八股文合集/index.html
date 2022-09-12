@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring MVC 和 Spring Boot 的区别 | Learning Notes</title>
-  <meta name="keywords" content=" Spring ">
-  <meta name="description" content="Spring MVC 和 Spring Boot 的区别 | Learning Notes">
+  <title>Java 八股文合集 | Learning Notes</title>
+  <meta name="keywords" content=" 八股文 ">
+  <meta name="description" content="Java 八股文合集 | Learning Notes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="语言基础什么是面向对象?面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序. 面向对象关注于完成一件事情需要哪些模块参与, 模块与模块之间的关系. 面向对象的三大特征: 封装、继承、多态 封装: 对象的属性不对外暴露, 暴露操作属性的方法. 继承: 子类继承父类, 对父类进行功能扩展. 多态: 基于对象所属类的不同, 外部对同一个方法的调用, 实际执行的逻辑不同. 重写和重载的区别重载:">
 <meta property="og:type" content="article">
@@ -392,9 +392,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Spring-MVC-和-Spring-Boot-的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java-八股文合集" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring MVC 和 Spring Boot 的区别</h1>
+        <h1 class="article-title">Java 八股文合集</h1>
     
     <div class="article-meta">
         
@@ -412,19 +412,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">Spring</a>
+            <a class="color4">八股文</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-10 15:55:43'>2022-09-10 09:32</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-12 20:15:38'>2022-09-12 13:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:203</span>
+        <span>字数:1.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -443,7 +443,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-%E6%A1%86%E6%9E%B6-amp-Spring-MVC-amp-Spring-Boot"><span class="toc-text">Spring 框架 &amp; Spring MVC &amp; Spring Boot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E6%A1%86%E6%9E%B6"><span class="toc-text">Spring 框架</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">什么是面向对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">重写和重载的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concurrentHashMap"><span class="toc-text">concurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-text">底层实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-text">扩容机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝和浅拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM"><span class="toc-text">JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">组成部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-text">JVM 运行时数据区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GC"><span class="toc-text">GC</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -459,15 +459,110 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Spring-框架-amp-Spring-MVC-amp-Spring-Boot"><a href="#Spring-框架-amp-Spring-MVC-amp-Spring-Boot" class="headerlink" title="Spring 框架 &amp; Spring MVC &amp; Spring Boot"></a>Spring 框架 &amp; Spring MVC &amp; Spring Boot</h2><h3 id="Spring-框架"><a href="#Spring-框架" class="headerlink" title="Spring 框架"></a>Spring 框架</h3><p>Spring 框架包含很多模块, 其中比较重要的是 Spring-Core (IoC容器)模块、Spring 中其他模块(AOP&#x2F;ORM&#x2F;Web)的功能实现基本都需要依赖该模块.</p>
-<p>Spring MVC 是 Spring 中的一个很重要的模块, 主要赋予 Spring 快速构建 MVC 架构的 Web 程序. 使用 Spring 进行开发各种配置过于麻烦, 比如开启 Spring 的某些特性时, 需要用 XML 或 Java 进行显示配置, 于是 Spring Boot 诞生了.</p>
-<p>Spring Boot 提供了一种快速使用 Spring 套件的能力, 提供可插拔的设计, 就是各种 starter.</p>
-<p><strong>总结</strong></p>
-<ul>
-<li>Spring: 引擎, 核心是 IOC 和 AOP</li>
-<li>Spring MVC: 是基于 Spring 核心的一个模块</li>
-<li>Spring Boot: 基于 Spring 的快速开发工具包</li>
-</ul>
+        <h2 id="语言基础"><a href="#语言基础" class="headerlink" title="语言基础"></a>语言基础</h2><h3 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象?"></a>什么是面向对象?</h3><p>面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序.</p>
+<p>面向对象关注于完成一件事情需要哪些模块参与, 模块与模块之间的关系.</p>
+<p>面向对象的三大特征: 封装、继承、多态</p>
+<p>封装: 对象的属性不对外暴露, 暴露操作属性的方法.</p>
+<p>继承: 子类继承父类, 对父类进行功能扩展.</p>
+<p>多态: 基于对象所属类的不同, 外部对同一个方法的调用, 实际执行的逻辑不同.</p>
+<h3 id="重写和重载的区别"><a href="#重写和重载的区别" class="headerlink" title="重写和重载的区别"></a>重写和重载的区别</h3><p><strong>重载</strong>: 发生在同一个类中, 方法名必须相同, 参数类型不同, 个数不同, 顺序不同, 方法返回值和访问修饰符可以不同, 发生在编译时</p>
+<p><strong>重写</strong>: 发生在父子类中,方法名、参数列表必须相同, 返回值范围小于等于父类(返回值类型必须为父类返回值的派生类), 抛出异常范围小于等于父类, 访问修饰符大于等于父类; private 方法不能重写.</p>
+<h3 id="concurrentHashMap"><a href="#concurrentHashMap" class="headerlink" title="concurrentHashMap"></a>concurrentHashMap</h3><h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p><strong>jdk 1.7</strong></p>
+<p><img src="./hashMap.drawio.png"></p>
+<p>按 segment 来加锁, 避免锁冲突.</p>
+<p>扩容: 按照 segment 来扩容, 复制到新数组, 然后头指针指向新数组.</p>
+<p><strong>jdk 1.8</strong></p>
+<p>支持多线程扩容: 不同线程负责不同范围的数据的转移, 扩容过程中, 如果有线程要 put, 先去帮忙扩容</p>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><strong>jdk 1.7</strong></p>
+<p>数组+链表</p>
+<p>链表解决哈希冲突</p>
+<p>链表插入是头插法</p>
+<p>复杂的散列算法 - 尽可能地减少哈希冲突</p>
+<p><strong>插入过程</strong></p>
+<ol>
+<li>根据 key 通过哈希算法得出数组下标</li>
+<li>如果数组下标位置为空, 封装 Entry 对象, 放在当前位置</li>
+<li>如果数组下标位置不为空, 则判断是否需要扩容, 不扩容就生成 Entry 对象, 使用头插法插入元素<ol>
+<li>插入需要遍历链表看 key 是否存在, 存在即更新value</li>
+</ol>
+</li>
+</ol>
+<p><strong>jdk 1.8</strong></p>
+<p>数组+链表+红黑树</p>
+<p>红黑树: 提高插入和查询效率</p>
+<p>链表插入是尾插法</p>
+<blockquote>
+<p>因为 1.8 中插入 key 和 value 时需要判断链表元素个数</p>
+</blockquote>
+<p>使用简单的散列算法代替 jdk1.7 中复杂的散列算法, 因为红黑树查询效率很高</p>
+<p><strong>插入过程</strong></p>
+<ol>
+<li>根据 key 通过哈希算法得出数组下标</li>
+<li>如果数组下标位置为空, 封装 Entry 对象, 放在当前位置</li>
+<li>如果数组下标位置不为空, 判断数组当前位置的 Node 是链表还是红黑树类型<ol>
+<li>如果是红黑树, 添加到红黑树里面. 如果红黑树为包含当前 key, 则更新 value</li>
+<li>如果为链表, 则使用尾插法, 插入, 同样需要遍历链表看是否有相同 key, 最后在链表尾部插入, 同时判断长度是否 &gt;&#x3D; 8, 如果是, 则转换为红黑树</li>
+<li>最后判断是否需要扩容, 如果不需要就结束 PUT, 需要就参与扩容</li>
+</ol>
+</li>
+</ol>
+<h4 id="扩容机制"><a href="#扩容机制" class="headerlink" title="扩容机制"></a>扩容机制</h4><p><strong>jdk 1.7</strong></p>
+<ol>
+<li>先生成新数组</li>
+<li>遍历老数组中的每个位置上的链表上的每个元素</li>
+<li>取每个元素的key, 并基于新数组长度, 计算出元素在新数组中的下标</li>
+<li>将元素添加到新数组中</li>
+<li>所有元素转移完后, 将新数组复制 HashMap 的 table 属性</li>
+</ol>
+<p><strong>jdk 1.8</strong></p>
+<ol>
+<li>先生成新数组</li>
+<li>遍历老数组中的每个位置上的链表或红黑树上的每个元素</li>
+<li>如果是链表, 重新计算下标, 放到新数组中</li>
+<li>如果是红黑树, 先遍历红黑树, 计算出红黑树中每个元素对应在新数组中的下标位置<ol>
+<li>统计每个下标位置的元素个数</li>
+<li>如果元素个数超过了 8 , 生成一个新的红黑树, 将根节点添加到数组对应位置</li>
+<li>如果元素个数小于 8, 生成一个链表, 并将链表头节点添加到数组对应位置</li>
+</ol>
+</li>
+<li>所有元素转移完后, 将新数组复制 HashMap 的 table 属性</li>
+</ol>
+<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p>浅拷贝: 拷贝基本数据类型的值以及实例对象的引用地址</p>
+<p>深拷贝: 拷贝基本数据类型的值和实例对象引用地址所指向的对象进行复制</p>
+<p>一句话: 拷贝出来的实例, 其对象类型的成员变量是不是同一个.</p>
+<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><p>类装载子系统、字节码执行引擎、JVM运行时数据区</p>
+<p><strong>字节码文件反编译</strong> <code>javap</code></p>
+<p>JVM运行时数据区包含 堆、栈、本地方法栈、元空间、程序计数器</p>
+<h4 id="JVM-运行时数据区"><a href="#JVM-运行时数据区" class="headerlink" title="JVM 运行时数据区"></a>JVM 运行时数据区</h4><p>栈: 局部变量、操作数栈、动态链接、方法出口</p>
+<blockquote>
+<p>操作数: 比如 1 +  2 这个加法操作, 1 和 2 就是操作数, 运算之后的结果 3 也是一个操作数</p>
+</blockquote>
+<p>程序计数器: 存储马上要运行的代码的位置(内存地址)</p>
+<blockquote>
+<p>为什么需要程序计数器? 比如当前线程被其他线程打断挂起, 线程恢复之后需要从挂起的位置继续执行, 需要需要程序计数器去记录这个位置</p>
+<p>程序计数器是谁设置的呢? 字节码执行引擎根据方法区当中存储的类信息执行引擎动态修改的.</p>
+</blockquote>
+<p>动态链接: 将符号引用转为直接引用</p>
+<blockquote>
+<p>符号: 变量名、方法名</p>
+<p>举个例子: 将方法名转为指向方法区对应方法存储的内存地址</p>
+</blockquote>
+<p>方法出口: 指向调用完当前方法的返回地址</p>
+<h4 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h4><p>谁去执行 GC 操作?</p>
+<blockquote>
+<p>字节码执行引擎会在后台开一个垃圾收集线程</p>
+</blockquote>
+<p>JVM 可视化工具: jvisualvm</p>
+<p>Arthas: JVM 调优工具</p>
+<p>JVM 调优目的: 减少 STW 的时间</p>
+<p>对象大小怎么评估?</p>
+<blockquote>
+<p>所有成员变量占用空间之和</p>
+</blockquote>
+<p>能否对 JVM 调优, 让其几乎不发生 FGC</p>
+<blockquote>
+<p>目的, 尽量让垃圾对象在 YGC 的时候就 GC 掉, 不要晋升到老年代</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 施工中... </span>
