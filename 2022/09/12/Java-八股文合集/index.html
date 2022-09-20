@@ -6,20 +6,18 @@
   <meta name="keywords" content=" 八股文 ">
   <meta name="description" content="Java 八股文合集 | Learning Notes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="语言基础什么是面向对象?面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序. 面向对象关注于完成一件事情需要哪些模块参与, 模块与模块之间的关系. 面向对象的三大特征: 封装、继承、多态 封装: 对象的属性不对外暴露, 暴露操作属性的方法. 继承: 子类继承父类, 对父类进行功能扩展. 多态: 基于对象所属类的不同, 外部对同一个方法的调用, 实际执行的逻辑不同. 重写和重载的区别重载:">
+<meta name="description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 八股文合集">
-<meta property="og:url" content="http://example.com/2022/09/12/Java-%E5%85%AB%E8%82%A1%E6%96%87%E5%90%88%E9%9B%86/index.html">
+<meta property="og:title" content="网络相关计算题">
+<meta property="og:url" content="http://example.com/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/index.html">
 <meta property="og:site_name" content="Learning Notes">
-<meta property="og:description" content="语言基础什么是面向对象?面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序. 面向对象关注于完成一件事情需要哪些模块参与, 模块与模块之间的关系. 面向对象的三大特征: 封装、继承、多态 封装: 对象的属性不对外暴露, 暴露操作属性的方法. 继承: 子类继承父类, 对父类进行功能扩展. 多态: 基于对象所属类的不同, 外部对同一个方法的调用, 实际执行的逻辑不同. 重写和重载的区别重载:">
+<meta property="og:description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/09/12/Java-%E5%85%AB%E8%82%A1%E6%96%87%E5%90%88%E9%9B%86/hashMap.drawio.png">
-<meta property="article:published_time" content="2022-09-12T05:55:47.000Z">
-<meta property="article:modified_time" content="2022-09-12T12:15:38.079Z">
+<meta property="article:published_time" content="2022-09-15T12:13:28.000Z">
+<meta property="article:modified_time" content="2022-09-15T13:11:03.821Z">
 <meta property="article:author" content="桶子">
-<meta property="article:tag" content="八股文">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/09/12/Java-%E5%85%AB%E8%82%A1%E6%96%87%E5%90%88%E9%9B%86/hashMap.drawio.png">
 
 
 <link rel="icon" href="/img/avatar.gif">
@@ -93,7 +91,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(12)</small>
+                <small>(14)</small>
             
         </div>
     </li>
@@ -118,7 +116,7 @@
                     <div data-rel="刷题笔记">
                         
                         刷题笔记
-                        <small>(6)</small>
+                        <small>(8)</small>
                         
                     </div>
                     
@@ -153,8 +151,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="12">
-<input type="hidden" id="yelog_site_word_count" value="9k">
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="11.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -228,7 +226,15 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数学</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -265,6 +271,24 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/"
+           data-tag="计算机网络"
+           data-author="" >
+            <span class="post-title" title="网络相关计算题">网络相关计算题</span>
+            <span class="post-date" title="2022-09-15 20:13:28">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E7%B1%BB/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="基础算法-数学类">基础算法-数学类</span>
+            <span class="post-date" title="2022-09-15 19:13:18">2022/09/15</span>
+        </a>
         
         
         <a  class="全部文章 Java "
@@ -419,12 +443,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-12 20:15:38'>2022-09-12 13:55</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-17 10:14:24'>2022-09-12 13:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.6k</span>
+        <span>字数:3.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -443,7 +467,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">什么是面向对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">重写和重载的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concurrentHashMap"><span class="toc-text">concurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-text">底层实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-text">扩容机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝和浅拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM"><span class="toc-text">JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">组成部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-text">JVM 运行时数据区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GC"><span class="toc-text">GC</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">什么是面向对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">重写和重载的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concurrentHashMap"><span class="toc-text">concurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-text">底层实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-text">扩容机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap-%E4%B8%AD%E7%9A%84-loadFactor"><span class="toc-text">HashMap 中的 loadFactor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝和浅拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM"><span class="toc-text">JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">组成部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-text">JVM 运行时数据区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GC"><span class="toc-text">GC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-text">类加载双亲委派机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%AE%8C%E6%95%B4%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-text">对象完整创建流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%A2%B0%E6%92%9E%E5%92%8C%E7%A9%BA%E9%97%B2%E5%88%97%E8%A1%A8"><span class="toc-text">指针碰撞和空闲列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E7%A9%BA%E9%97%B4%E6%97%B6%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-text">分配空间时并发问题解决</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-%E5%BA%95%E5%B1%82%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">Redis 底层存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis-%E5%88%A0%E9%99%A4%E5%AE%9E%E7%8E%B0"><span class="toc-text">redis 删除实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84%E8%BD%AC%E5%8F%98"><span class="toc-text">集群架构转变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP-%E7%90%86%E8%AE%BA"><span class="toc-text">CAP 理论</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dubbo"><span class="toc-text">Dubbo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">远程调用的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">寻址(注册中心)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-text">网络协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SPI"><span class="toc-text">SPI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dubbo-SPI"><span class="toc-text">Dubbo SPI</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -459,7 +483,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="语言基础"><a href="#语言基础" class="headerlink" title="语言基础"></a>语言基础</h2><h3 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象?"></a>什么是面向对象?</h3><p>面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序.</p>
+        <h2 id="语言基础"><a href="#语言基础" class="headerlink" title="语言基础"></a>语言基础</h2><h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p><strong>强一致性、弱一致性、最终一致性</strong></p>
+<p>强一致性: 要求更新过的数据能被后序的访问看到</p>
+<p>弱一致性: 容忍更新过的数据存在部分访问不到</p>
+<p>最终一致性: 要求经过一段时间后, 更新过的数据能被访问到</p>
+<h3 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象?"></a>什么是面向对象?</h3><p>面向对象关注于完成一件事情需要哪些步骤,步骤之间的执行顺序.</p>
 <p>面向对象关注于完成一件事情需要哪些模块参与, 模块与模块之间的关系.</p>
 <p>面向对象的三大特征: 封装、继承、多态</p>
 <p>封装: 对象的属性不对外暴露, 暴露操作属性的方法.</p>
@@ -467,12 +495,16 @@
 <p>多态: 基于对象所属类的不同, 外部对同一个方法的调用, 实际执行的逻辑不同.</p>
 <h3 id="重写和重载的区别"><a href="#重写和重载的区别" class="headerlink" title="重写和重载的区别"></a>重写和重载的区别</h3><p><strong>重载</strong>: 发生在同一个类中, 方法名必须相同, 参数类型不同, 个数不同, 顺序不同, 方法返回值和访问修饰符可以不同, 发生在编译时</p>
 <p><strong>重写</strong>: 发生在父子类中,方法名、参数列表必须相同, 返回值范围小于等于父类(返回值类型必须为父类返回值的派生类), 抛出异常范围小于等于父类, 访问修饰符大于等于父类; private 方法不能重写.</p>
-<h3 id="concurrentHashMap"><a href="#concurrentHashMap" class="headerlink" title="concurrentHashMap"></a>concurrentHashMap</h3><h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p><strong>jdk 1.7</strong></p>
+<h3 id="concurrentHashMap"><a href="#concurrentHashMap" class="headerlink" title="concurrentHashMap"></a>concurrentHashMap</h3><h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p>关键字: 两次 hash</p>
+<p><strong>一次找到 segment 数组下标, 一次找到 segment 中的链表头</strong></p>
+<p>segment 可以理解为 Hash 表头指针数组</p>
+<p><strong>jdk 1.7</strong></p>
 <p><img src="./hashMap.drawio.png"></p>
 <p>按 segment 来加锁, 避免锁冲突.</p>
 <p>扩容: 按照 segment 来扩容, 复制到新数组, 然后头指针指向新数组.</p>
 <p><strong>jdk 1.8</strong></p>
-<p>支持多线程扩容: 不同线程负责不同范围的数据的转移, 扩容过程中, 如果有线程要 put, 先去帮忙扩容</p>
+<p>关键字: 使用 node 节点代替 segment 数组</p>
+<p>插入时, 先判断头节点是否为空, 如果为空, 则用 cas 去设置头节点. 如果不为空, 则用 synchronized 锁住头节点, 判断头节点是否相同, 然后执行链表或二叉树的插入操作</p>
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><strong>jdk 1.7</strong></p>
 <p>数组+链表</p>
 <p>链表解决哈希冲突</p>
@@ -527,6 +559,23 @@
 </li>
 <li>所有元素转移完后, 将新数组复制 HashMap 的 table 属性</li>
 </ol>
+<h4 id="HashMap-中的-loadFactor"><a href="#HashMap-中的-loadFactor" class="headerlink" title="HashMap 中的 loadFactor"></a>HashMap 中的 loadFactor</h4><p>HashMap扩容机制: 当 map 中的容量大于一个阈值时, 触发 hashMap 的扩容</p>
+<p><code>阈值=factor*capacity</code></p>
+<p><strong>为什么要扩容</strong></p>
+<p>为了查询效率的原因, 当容量太小时, 发生 hash 冲突的概率会增大, 按照 hashMap 的底层结构来看, 散列到同一个数组下标的查询效率为变为 o(n)&#x2F;o(logn), 所以扩容本质是用空间来换取时间的一种方法.</p>
+<p><strong>为什么需要阈值?</strong></p>
+<p>如果我们每次都等 HashMap 容量到达上限之后再扩容, 那么此时hash冲突的概率会上升, 查找效率会变慢, 提前扩容可以某种程度上提前规避 hash 冲突.</p>
+<p><strong>loadFactor 值的设置</strong></p>
+<p>loadFactor 值越大, 空间利用率变高, 但是因为hash冲突可能导致查询效率的降低</p>
+<p>loadFactor 值越小, 空间利用率变低, 但是可以提前规避hash冲突使查询效率提升</p>
+<p>所以本质上 loadFactor 的取值是一个权衡</p>
+<p><strong>loadFactor 为什么默认是 0.75</strong></p>
+<ol>
+<li><p>根据hashMap的扩容机制, 他会保证 capacity 的值永远是 2 的幂次方,  0.75 * 任何 2 的幂次都是整数.</p>
+</li>
+<li><p>根据数学推导, capacity 的值在log(2)左右时是比较合理的.</p>
+</li>
+</ol>
 <h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p>浅拷贝: 拷贝基本数据类型的值以及实例对象的引用地址</p>
 <p>深拷贝: 拷贝基本数据类型的值和实例对象引用地址所指向的对象进行复制</p>
 <p>一句话: 拷贝出来的实例, 其对象类型的成员变量是不是同一个.</p>
@@ -563,6 +612,94 @@
 <blockquote>
 <p>目的, 尽量让垃圾对象在 YGC 的时候就 GC 掉, 不要晋升到老年代</p>
 </blockquote>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p>引导类加载器: 加载 JRE lib 目录下的核心类</p>
+<p>扩展类加载器: 负责 JRE lib 目录下的 ext 扩展类</p>
+<p>应用程序类加载器: 负责加载 classPath 路径下的类包</p>
+<p>自定义加载器: 加载用户自定义路径下的类包</p>
+<h4 id="类加载双亲委派机制"><a href="#类加载双亲委派机制" class="headerlink" title="类加载双亲委派机制"></a>类加载双亲委派机制</h4><p>一句话: 子类加载器首先向上委托父类加载器加载, 父类加载器无法加载再由子类加载器加载</p>
+<p>自顶向下分别时是</p>
+<ul>
+<li>引导类加载器</li>
+<li>扩展类加载器</li>
+<li>应用程序类加载器</li>
+<li>自定义加载器</li>
+</ul>
+<p><strong>为什么?</strong></p>
+<p>安全性, 保证核心类库的安全</p>
+<p>唯一性, 避免类重复加载</p>
+<blockquote>
+<p>tomcat 当中的类加载有所不同, 为了保证不同 war 包的一个隔离性, 不同 war 是由不同类加载器加载, 且第三方依赖的不同版本可以共存</p>
+</blockquote>
+<h4 id="对象完整创建流程"><a href="#对象完整创建流程" class="headerlink" title="对象完整创建流程"></a>对象完整创建流程</h4><ol>
+<li>类加载检查</li>
+<li>判断是否加载<ol>
+<li>否,加载类</li>
+</ol>
+</li>
+<li>分配内存</li>
+<li>初始化零值</li>
+<li>设置对象头 64位(锁,分代年龄)</li>
+<li>执行 init 方法<ol>
+<li>为对象赋值</li>
+<li>执行构造方法</li>
+</ol>
+</li>
+</ol>
+<h4 id="指针碰撞和空闲列表"><a href="#指针碰撞和空闲列表" class="headerlink" title="指针碰撞和空闲列表"></a>指针碰撞和空闲列表</h4><p>指针碰撞: 如果 Java 堆中内存是绝对规整, 空闲内存在一边, 用过的内存在另一边, 通过记录这个边界的位置, 分配对象可以直接从指针出分配</p>
+<p>空闲列表: Java 堆分配不规整, 对还没被使用的空闲空间用列表记录, 分配对象时从空闲列表中找到合适的空间进行分配</p>
+<h4 id="分配空间时并发问题解决"><a href="#分配空间时并发问题解决" class="headerlink" title="分配空间时并发问题解决"></a>分配空间时并发问题解决</h4><p>CAS+分配重试: CAS 比较边界指针的值</p>
+<p>本地线程分配缓冲(TLAB): 每个线程在 Java 堆中预先分配一小块内存, 优先在本线程内空间分配</p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="Redis-底层存储结构"><a href="#Redis-底层存储结构" class="headerlink" title="Redis 底层存储结构"></a>Redis 底层存储结构</h3><p>一句话: 哈希表+跳表</p>
+<p><strong>好处</strong>: 既支持范围搜索也支持精确搜索</p>
+<p><strong>什么是跳表?</strong></p>
+<blockquote>
+<p>跳表是在链表的基础上改进过来的, 实现了一种多层的有序链表</p>
+</blockquote>
+<p>下图展示了一个层级为 3 的跳表, 图中头节点有 L0 - L2 三个头指针, 每个层级的节点都通过头指针链接起来, 跳表的查询复杂度是 O(logN)</p>
+<p><img src="./2355823-20220427153753717-1118740554.png" alt="2355823-20220427153753717-1118740554"></p>
+<h3 id="redis-删除实现"><a href="#redis-删除实现" class="headerlink" title="redis 删除实现"></a>redis 删除实现</h3><p><strong>惰性删除</strong>: 当读&#x2F;写一个已经过期的 key 时, 会触发惰性删除, 判断 key 是否已经过期</p>
+<p><strong>定时删除</strong>: 定期(默认100sms)主动淘汰一批已经过期的 key</p>
+<p>耗时: 删除大对象或对集合类型的key做删除都会很慢</p>
+<h3 id="集群架构转变"><a href="#集群架构转变" class="headerlink" title="集群架构转变"></a>集群架构转变</h3><p>主从架构</p>
+<p>哨兵架构</p>
+<p>集群架构</p>
+<ul>
+<li>数据 hash 分片算法</li>
+</ul>
+<h4 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h4><p><img src="./v2-8c5c7cf74726539165651580692c33c5_1440w.jpeg" alt="v2-8c5c7cf74726539165651580692c33c5_1440w"></p>
+<p>CAP 理论规定只能实现 CP 和 AP.</p>
+<p>C: 总是能读到最新写入的数据</p>
+<p>A: 非故障节点在合理的时间内返回合理的回复</p>
+<p>P: 当出现网路分区后, 系统能够继续提供服务 </p>
+<h2 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h2><h3 id="远程调用的步骤"><a href="#远程调用的步骤" class="headerlink" title="远程调用的步骤"></a>远程调用的步骤</h3><p>客户端调用远程方法-&gt;封装远程调用请求-&gt;发送远程调用-&gt;服务端接收远程调用-&gt;服务端解析远程调用参数-&gt;调用本地方法-&gt;封装远程调用结果-&gt;发送远程调用结果-&gt;客户端接收远程调用结果-&gt;远程调用结果解析为本地调用结果返回</p>
+<p><strong>RPC 框架的目的</strong>: 让远程调用像本地调用一样方便</p>
+<p><strong>核心实现</strong>: 动态代理(封装底层网络细节)+网络通信(寻址、序列化和反序列化、网络协议)</p>
+<h3 id="寻址-注册中心"><a href="#寻址-注册中心" class="headerlink" title="寻址(注册中心)"></a>寻址(注册中心)</h3><p>核心实现: Map -&gt; key为服务名, Value 为可用的 ip 地址列表</p>
+<p><strong>分布式Map -&gt; redis</strong></p>
+<h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p>底层可用 http&#x2F;tcp&#x2F;protobuf 等协议</p>
+<p>如何让框架通过动态的方式直接协议的绑定?</p>
+<blockquote>
+<p>解析用户配置-&gt;根据用户配置进行协议绑定</p>
+</blockquote>
+<h4 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h4><p><strong>Java 原生 SPI</strong></p>
+<blockquote>
+<p> 在系统设计中, 模块间都是不指定具体的借口实现类的, 一旦代码里指定了实现类就无法在不修改代码的情况下替换另一种实现.</p>
+</blockquote>
+<p>Java 提供了, 接口+实现类(第三方)+配置文件的方式实现动态加载机制.</p>
+<pre><code class="java">ServiceLoader&lt;Animal&gt; serviceLoader = ServiceLoader.load(Animal.class);
+for (Animal animal: serviceLoader) &#123;
+  animal.call();
+&#125;
+</code></pre>
+<p><strong>不足之处</strong></p>
+<ol>
+<li>不能直接指定加载某一个类, 只能遍历配置文件中的所有类来找到我们想要的类</li>
+<li>获取类的方式不够灵活</li>
+<li>ServiceLoader 线程不安全</li>
+</ol>
+<h4 id="Dubbo-SPI"><a href="#Dubbo-SPI" class="headerlink" title="Dubbo SPI"></a>Dubbo SPI</h4><ol>
+<li>通过 Key 获取我们想要的对象实例, 支持注解默认实现</li>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 施工中... </span>
