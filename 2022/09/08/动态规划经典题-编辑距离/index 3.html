@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>动态规划经典题-编辑距离 | Learning Notes</title>
+  <meta name="keywords" content=" 动态规划 ">
+  <meta name="description" content="动态规划经典题-编辑距离 | Learning Notes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络相关计算题">
+<meta property="og:url" content="http://example.com/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/index.html">
+<meta property="og:site_name" content="Learning Notes">
+<meta property="og:description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-15T12:13:28.000Z">
+<meta property="article:modified_time" content="2022-09-15T13:11:03.821Z">
+<meta property="article:author" content="桶子">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.gif">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.gif"/>
+</a>
+<div class="author">
+    <span>桶子</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/sammyyx"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(14)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="Java">
+                        
+                        Java
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="刷题笔记">
+                        
+                        刷题笔记
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="中间件">
+                        
+                        中间件
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="11.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>八股文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>并发编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>递归</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二叉树</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回溯</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>双指针</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>消息队列</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/"
+           data-tag="计算机网络"
+           data-author="" >
+            <span class="post-title" title="网络相关计算题">网络相关计算题</span>
+            <span class="post-date" title="2022-09-15 20:13:28">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E7%B1%BB/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="基础算法-数学类">基础算法-数学类</span>
+            <span class="post-date" title="2022-09-15 19:13:18">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/12/Java-%E5%85%AB%E8%82%A1%E6%96%87%E5%90%88%E9%9B%86/"
+           data-tag="八股文"
+           data-author="" >
+            <span class="post-title" title="Java 八股文合集">Java 八股文合集</span>
+            <span class="post-date" title="2022-09-12 13:55:47">2022/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/10/Spring-MVC-%E5%92%8C-Spring-Boot-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="Spring MVC 和 Spring Boot 的区别">Spring MVC 和 Spring Boot 的区别</span>
+            <span class="post-date" title="2022-09-10 09:32:08">2022/09/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/09/GC%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="GC,JVM"
+           data-author="" >
+            <span class="post-title" title="GC算法总结">GC算法总结</span>
+            <span class="post-date" title="2022-09-09 14:05:14">2022/09/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/08/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%8F%E5%85%B8%E9%A2%98-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="动态规划经典题-编辑距离">动态规划经典题-编辑距离</span>
+            <span class="post-date" title="2022-09-08 20:06:08">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 "
+           href="/2022/09/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"
+           data-tag="消息队列"
+           data-author="" >
+            <span class="post-title" title="消息队列基本原理">消息队列基本原理</span>
+            <span class="post-date" title="2022-09-07 09:47:19">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/"
+           data-tag="并发编程"
+           data-author="" >
+            <span class="post-title" title="并发编程-基础求和问题">并发编程-基础求和问题</span>
+            <span class="post-date" title="2022-09-06 19:05:23">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"
+           data-tag="回溯"
+           data-author="" >
+            <span class="post-title" title="回溯算法基本框架">回溯算法基本框架</span>
+            <span class="post-date" title="2022-09-06 19:03:56">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"
+           data-tag="递归,动态规划"
+           data-author="" >
+            <span class="post-title" title="动态规划基本框架">动态规划基本框架</span>
+            <span class="post-date" title="2022-09-06 09:29:33">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="二叉树,递归"
+           data-author="" >
+            <span class="post-title" title="递归二叉树">递归二叉树</span>
+            <span class="post-date" title="2022-09-05 20:10:57">2022/09/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/"
+           data-tag="数组,集合"
+           data-author="" >
+            <span class="post-title" title="Java数组集合技巧合集">Java数组集合技巧合集</span>
+            <span class="post-date" title="2022-09-05 15:03:24">2022/09/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/02/%E6%95%B0%E7%BB%84%E5%8F%8C%E6%8C%87%E9%92%88/"
+           data-tag="双指针,数组"
+           data-author="" >
+            <span class="post-title" title="数组双指针">数组双指针</span>
+            <span class="post-date" title="2022-09-02 15:00:30">2022/09/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/08/10/%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88/"
+           data-tag="链表,双指针"
+           data-author="" >
+            <span class="post-title" title="链表双指针">链表双指针</span>
+            <span class="post-date" title="2022-08-10 13:15:10">2022/08/10</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-动态规划经典题-编辑距离" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">动态规划经典题-编辑距离</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题笔记">刷题笔记</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">动态规划</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-09-08 21:14:04'>2022-09-08 20:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:679</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B-%E9%80%92%E5%BD%92%E8%A7%A3%E6%B3%95"><span class="toc-text">自顶向下(递归解法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">自底向上(动态规划)</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。</p>
+<p>你可以对一个单词进行如下三种操作：</p>
+<p>插入一个字符<br>删除一个字符<br>替换一个字符</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/edit-distance">https://leetcode.cn/problems/edit-distance</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+</blockquote>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><strong>dp数组定义</strong></p>
+<p>有字符串 s1 和 s2, 求 s1 -&gt; s2 的最短距离</p>
+<pre><code>dp[i][j] : s1[0,i] 和 s2[0,j] 的最短编辑距离
+</code></pre>
+<p><strong>选择对 dp 数组的影响</strong></p>
+<p>当 <code> s1[i] == s2[j]</code> 时, 此时选择跳过当前字符, <code>dp[i][j]=dp[i-1][j-1]</code></p>
+<p>当 <code>s1[i] != s2[j]</code> 时, 此时有三种选择, 取三种选择中最小的一个即可,<code> Math.min(dp[i-1][j]+1,dp[i-1][j-1]+1,dp[i][j-1]+1)</code></p>
+<ul>
+<li>删除当前字符, 那么 <code>dp[i][j]=dp[i-1][j]+1</code></li>
+<li>替换当前字符, 那么 <code>dp[i][j]=dp[i-1][j-1]+1</code></li>
+<li>新增当前字符, 那么<code>dp[i][j]=dp[i][j-1]+1</code></li>
+</ul>
+<h3 id="自顶向下-递归解法"><a href="#自顶向下-递归解法" class="headerlink" title="自顶向下(递归解法)"></a>自顶向下(递归解法)</h3><pre><code class="java">public int minDistance(String word1, String word2) &#123;
+        int[][] memo = new int[word1.length()][word2.length()];
+        for (int i = 0; i &lt; word1.length(); i++) &#123;
+            for (int j = 0; j &lt; word2.length(); j++) &#123;
+                memo[i][j] = -1;
+            &#125;
+        &#125;
+        return dp(word1, word1.length()-1, word2,word2.length()-1, memo);
+    &#125;
+
+    public int dp(String word1, int i, String word2, int j, int[][] memo) &#123;
+        if (i == -1) return j+1;
+        if (j == -1) return i+1;
+        if (memo[i][j] != -1) return memo[i][j];
+        if (word1.charAt(i) == word2.charAt(j)) &#123;
+            memo[i][j] = dp(word1, i-1, word2, j-1, memo);
+        &#125; else &#123;
+            memo[i][j] = Math.min(Math.min(dp(word1, i-1, word2, j,memo)+1,dp(word1, i-1, word2, j-1,memo)+1),dp(word1, i, word2, j-1,memo)+1);
+        &#125;
+        return memo[i][j];
+    &#125;
+</code></pre>
+<h3 id="自底向上-动态规划"><a href="#自底向上-动态规划" class="headerlink" title="自底向上(动态规划)"></a>自底向上(动态规划)</h3><pre><code>if s1[i] == s1[j]: dp[i][j]=dp[i-1][j-1]
+if s1[i] != s1[j]: 
+    dp[i][j]=min(dp[i-1][j]+1,dp[i-1][j-1]+1,dp[i][j-1]+1)
+</code></pre>
+<p>从上面的推导公式可以看出, 二维数组 <code>dp[i][j]</code> 这个格子只与其 斜左上, 上, 左 三个格子相关, 即: 只要知道这三个格子的值就能推导出  <code>dp[i][j]</code></p>
+<pre><code class="java">public int minDistance(String word1, String word2) &#123;
+        int[][] dp = new int[word1.length()+1][word2.length()+1];
+        for (int i = 0; i &lt;= word1.length(); i++) &#123;
+            for (int j = 0; j &lt;= word2.length(); j++) &#123;
+                dp[i][j] = -1;
+            &#125;
+        &#125;
+        for (int i = 0; i &lt;= word1.length(); i++) &#123;
+            dp[i][0] = i;
+        &#125;
+        for (int i = 0; i &lt;= word2.length(); i++) &#123;
+            dp[0][i] = i;
+        &#125;
+        for (int i = 1; i &lt;= word1.length(); i++) &#123;
+            for (int j = 1; j &lt;= word2.length(); j++) &#123;
+                if (word1.charAt(i-1) == word2.charAt(j-1)) &#123;
+                    dp[i][j] = dp[i-1][j-1];
+                &#125; else &#123;
+                    dp[i][j] = Math.min(Math.min(dp[i-1][j],dp[i][j-1]),dp[i-1][j-1]) + 1;
+                &#125;
+            &#125;
+        &#125;
+        return dp[word1.length()][word2.length()];
+    &#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 施工中... </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022-2022 桶子
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

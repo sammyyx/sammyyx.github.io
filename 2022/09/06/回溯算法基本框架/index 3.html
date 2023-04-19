@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>回溯算法基本框架 | Learning Notes</title>
+  <meta name="keywords" content=" 回溯 ">
+  <meta name="description" content="回溯算法基本框架 | Learning Notes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络相关计算题">
+<meta property="og:url" content="http://example.com/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/index.html">
+<meta property="og:site_name" content="Learning Notes">
+<meta property="og:description" content="A类、B类、C类地址ip范围A类地址最高位由 0 开头, 1字节的网络地址和3字节的主机地址构成(掩码: 255.0.0.0) 00000000,00000000,00000000,00000000 ~ 01111111,11111111,11111111,11111111 所以地址范围为: 0.0.0.0 ~ 127.255.255.255 由于 0 和 127 不能作为主机的 ip 地址, 所">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-15T12:13:28.000Z">
+<meta property="article:modified_time" content="2022-09-15T13:11:03.821Z">
+<meta property="article:author" content="桶子">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.gif">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.gif"/>
+</a>
+<div class="author">
+    <span>桶子</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/sammyyx"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(14)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="Java">
+                        
+                        Java
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="刷题笔记">
+                        
+                        刷题笔记
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="中间件">
+                        
+                        中间件
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="11.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>八股文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>并发编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>递归</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二叉树</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回溯</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>双指针</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>消息队列</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E9%A2%98/"
+           data-tag="计算机网络"
+           data-author="" >
+            <span class="post-title" title="网络相关计算题">网络相关计算题</span>
+            <span class="post-date" title="2022-09-15 20:13:28">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/15/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E7%B1%BB/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="基础算法-数学类">基础算法-数学类</span>
+            <span class="post-date" title="2022-09-15 19:13:18">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/12/Java-%E5%85%AB%E8%82%A1%E6%96%87%E5%90%88%E9%9B%86/"
+           data-tag="八股文"
+           data-author="" >
+            <span class="post-title" title="Java 八股文合集">Java 八股文合集</span>
+            <span class="post-date" title="2022-09-12 13:55:47">2022/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/10/Spring-MVC-%E5%92%8C-Spring-Boot-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="Spring MVC 和 Spring Boot 的区别">Spring MVC 和 Spring Boot 的区别</span>
+            <span class="post-date" title="2022-09-10 09:32:08">2022/09/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/09/GC%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="GC,JVM"
+           data-author="" >
+            <span class="post-title" title="GC算法总结">GC算法总结</span>
+            <span class="post-date" title="2022-09-09 14:05:14">2022/09/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/08/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%8F%E5%85%B8%E9%A2%98-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="动态规划经典题-编辑距离">动态规划经典题-编辑距离</span>
+            <span class="post-date" title="2022-09-08 20:06:08">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 "
+           href="/2022/09/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"
+           data-tag="消息队列"
+           data-author="" >
+            <span class="post-title" title="消息队列基本原理">消息队列基本原理</span>
+            <span class="post-date" title="2022-09-07 09:47:19">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/06/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/"
+           data-tag="并发编程"
+           data-author="" >
+            <span class="post-title" title="并发编程-基础求和问题">并发编程-基础求和问题</span>
+            <span class="post-date" title="2022-09-06 19:05:23">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"
+           data-tag="回溯"
+           data-author="" >
+            <span class="post-title" title="回溯算法基本框架">回溯算法基本框架</span>
+            <span class="post-date" title="2022-09-06 19:03:56">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6/"
+           data-tag="递归,动态规划"
+           data-author="" >
+            <span class="post-title" title="动态规划基本框架">动态规划基本框架</span>
+            <span class="post-date" title="2022-09-06 09:29:33">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/05/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="二叉树,递归"
+           data-author="" >
+            <span class="post-title" title="递归二叉树">递归二叉树</span>
+            <span class="post-date" title="2022-09-05 20:10:57">2022/09/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java "
+           href="/2022/09/05/Java%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E6%8A%80%E5%B7%A7%E5%90%88%E9%9B%86/"
+           data-tag="数组,集合"
+           data-author="" >
+            <span class="post-title" title="Java数组集合技巧合集">Java数组集合技巧合集</span>
+            <span class="post-date" title="2022-09-05 15:03:24">2022/09/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/09/02/%E6%95%B0%E7%BB%84%E5%8F%8C%E6%8C%87%E9%92%88/"
+           data-tag="双指针,数组"
+           data-author="" >
+            <span class="post-title" title="数组双指针">数组双指针</span>
+            <span class="post-date" title="2022-09-02 15:00:30">2022/09/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 刷题笔记 "
+           href="/2022/08/10/%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88/"
+           data-tag="链表,双指针"
+           data-author="" >
+            <span class="post-title" title="链表双指针">链表双指针</span>
+            <span class="post-date" title="2022-08-10 13:15:10">2022/08/10</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-回溯算法基本框架" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">回溯算法基本框架</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题笔记">刷题笔记</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">回溯</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-09-06 20:50:19'>2022-09-06 19:03</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:458</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-text">基本框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E6%8E%92%E5%88%97"><span class="toc-text">全排列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#N%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98"><span class="toc-text">N皇后问题</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h2><pre><code class="java">private void traverse(...) &#123;
+    if (是否可以终止?) &#123;
+          // 结果保存
+        return;
+    &#125;
+    for (选择: 所有选择) &#123;
+        // 进行选择
+        traverse(...);
+        // 撤销选择
+    &#125;
+&#125;
+</code></pre>
+<h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p><strong>visited 数组</strong></p>
+<ul>
+<li>使用 visited 数组记录数组中元素的使用, 跳过使用过的元素</li>
+</ul>
+<pre><code class="java">List&lt;List&lt;Integer&gt;&gt; result = new LinkedList&lt;&gt;();
+
+private void traverse(int[] nums, boolean[] visited, LinkedList&lt;Integer&gt; track) &#123;
+    if (track.size() == nums.length) &#123;
+        List&lt;Integer&gt; copy = new LinkedList&lt;&gt;(track);
+        result.add(copy);
+        return;
+    &#125;
+    for (int i = 0; i &lt; nums.length; i++) &#123;
+        if (visited[i]) continue;
+        track.add(nums[i]);
+        visited[i] = true;
+        traverse(nums, visited, track);
+        visited[i] = false;
+        track.removeLast();
+    &#125;
+&#125;
+
+public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) &#123;
+    boolean[] visited = new boolean[nums.length];
+    LinkedList&lt;Integer&gt; track = new LinkedList&lt;&gt;();
+    traverse(nums, visited, track);
+    return result;
+&#125;
+</code></pre>
+<h2 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h2><p><strong>判断是否可以放皇后</strong></p>
+<ul>
+<li>由于是逐行放皇后, 所以仅需考虑「与皇后同列」、「皇后左上」、「皇后右上」</li>
+</ul>
+<pre><code class="java">List&lt;List&lt;String&gt;&gt; result = new LinkedList&lt;&gt;();
+
+private void traverse(LinkedList&lt;String&gt; board, int curRow, int n) &#123;
+    if (board.size() == n) &#123;
+        result.add(new LinkedList&lt;&gt;(board));
+        return;
+    &#125;
+    for (int j = 0; j &lt; n; j++) &#123;
+        if (isValid(board, curRow, j, n)) &#123;
+            board.add(newBoard(n, j));
+            traverse(board, curRow + 1, n);
+            board.removeLast();
+        &#125;
+    &#125;
+&#125;
+
+private String newBoard(int n, int j) &#123;
+    String s = &quot;&quot;;
+    for (int i = 0; i &lt; n; i++) &#123;
+        if (i == j)
+            s += &quot;Q&quot;;
+        else
+            s += &quot;.&quot;;
+    &#125;
+    return s;
+&#125;
+
+private boolean isValid(List&lt;String&gt; board, int row, int column, int n) &#123;
+    // 同列
+    for (String s : board) &#123;
+        if (s.charAt(column) == &#39;Q&#39;)
+            return false;
+    &#125;
+    // 左上
+    for (int i = row - 1, j = column - 1; i &gt;= 0 &amp;&amp; j &gt;= 0; i--, j--) &#123;
+        if (board.get(i).charAt(j) == &#39;Q&#39;)
+            return false;
+    &#125;
+    // 右上
+    for (int i = row - 1, j = column + 1; i &gt;= 0 &amp;&amp; j &lt; n; i--, j++) &#123;
+        if (board.get(i).charAt(j) == &#39;Q&#39;)
+            return false;
+    &#125;
+    return true;
+&#125;
+
+public List&lt;List&lt;String&gt;&gt; solveNQueens(int n) &#123;
+    LinkedList&lt;String&gt; board = new LinkedList&lt;&gt;();
+    traverse(board, 0, n);
+    return result;
+&#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 施工中... </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022-2022 桶子
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
